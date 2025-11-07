@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "foodvision-bench"
+version = "0.2.1"
+description = "Open reproducible benchmarks for food-image recognition models and APIs."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "The Foodvision Bench Contributors" },
+]
+keywords = [
+  "benchmark",
+  "computer-vision",
+  "food-recognition",
+  "nutrition",
+  "clip",
+  "siglip",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+clip = [
+  "torch>=2.1",
+  "open-clip-torch>=2.24",
+]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/foodvision-bench/foodvision-bench"
+Issues = "https://github.com/foodvision-bench/foodvision-bench/issues"
+Documentation = "https://github.com/foodvision-bench/foodvision-bench/tree/main/docs"
+
+[project.scripts]
+foodvision-bench = "foodvision_bench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+foodvision_bench = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,22 @@
+{
+  "date": "2025-11",
+  "commit": "initial-snapshot",
+  "test_set": "mini-180",
+  "environment": {
+    "python": "3.12.6",
+    "os": "ubuntu-22.04",
+    "gpu": "none"
+  },
+  "entries": [
+    {
+      "system": "CLIP-ViT-L/14",
+      "system_version": "open-clip@2.24.0-openai",
+      "kind": "open-source",
+      "mape_kcal": 0.184,
+      "mape_kcal_ci95": [0.167, 0.202],
+      "top_1": 0.612,
+      "source": "open-source",
+      "notes": "First baseline; zero-shot over 40 Food-101 labels."
+    }
+  ]
+}

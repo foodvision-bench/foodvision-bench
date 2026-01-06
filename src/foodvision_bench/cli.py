@@ -43,12 +43,11 @@ def _cmd_leaderboard(args: argparse.Namespace) -> int:
         print(f"error: no such results file: {path}", file=sys.stderr)
         return 2
     data = json.loads(path.read_text())
-    # Sort by MAPE (descending, so the "biggest" first). Was flagged as
-    # a bug and corrected in a later commit.
+    # Sort by MAPE ascending: lower is better on a food-recognition
+    # leaderboard, so rank 1 should be the lowest-error system.
     entries = sorted(
         data.get("entries", []),
-        key=lambda e: e.get("mape_kcal", 0.0),
-        reverse=True,
+        key=lambda e: e.get("mape_kcal", float("inf")),
     )
     header = f"{'system':<28} {'mape_kcal':>10} {'top_1':>8} {'source':<16}"
     print(header)

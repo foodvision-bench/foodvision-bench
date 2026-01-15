@@ -16,11 +16,21 @@ def _load_clip() -> FoodRecognitionSystem:
     return CLIPBaseline()
 
 
+def _load_siglip() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.siglip_baseline import SigLIPBaseline
+    return SigLIPBaseline()
+
+
 REGISTRY: dict[str, dict[str, Any]] = {
     "clip-vit-l": {
         "kind": "open-source",
         "description": "CLIP ViT-L/14 zero-shot classifier over Food-101 labels.",
         "loader": _load_clip,
+    },
+    "siglip-so-14": {
+        "kind": "open-source",
+        "description": "SigLIP-SO-14 zero-shot classifier over Food-101 labels.",
+        "loader": _load_siglip,
     },
 }
 

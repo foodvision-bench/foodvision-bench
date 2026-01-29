@@ -1,0 +1,59 @@
+{
+  "date": "2026-01",
+  "commit": "siglip-added",
+  "test_set": "mini-180",
+  "environment": {
+    "python": "3.12.7",
+    "os": "ubuntu-22.04",
+    "gpu": "none"
+  },
+  "entries": [
+    {
+      "system": "PlateLens",
+      "system_version": "2026-01-vendor-page",
+      "kind": "vendor",
+      "mape_kcal": 0.012,
+      "top_1": null,
+      "source": "vendor-reported",
+      "notes": "Vendor-published MAPE; no independent replication yet in this repo."
+    },
+    {
+      "system": "Cronometer",
+      "system_version": "2026-01-db",
+      "kind": "vendor",
+      "mape_kcal": 0.068,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Manual-entry workflow; replicated assuming correct DB selection."
+    },
+    {
+      "system": "MyFitnessPal",
+      "system_version": "2026-01-db",
+      "kind": "vendor",
+      "mape_kcal": 0.112,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Manual-entry workflow; replicated on 180-meal set."
+    },
+    {
+      "system": "CLIP-ViT-L/14",
+      "system_version": "open-clip@2.24.0-openai",
+      "kind": "open-source",
+      "mape_kcal": 0.091,
+      "mape_kcal_ci95": [0.082, 0.101],
+      "top_1": 0.612,
+      "source": "open-source",
+      "notes": "Rerun against mini-180 after portion-heuristic adjustment."
+    },
+    {
+      "system": "SigLIP-SO-14",
+      "system_version": "open-clip@2.24.0-webli",
+      "kind": "open-source",
+      "mape_kcal": 0.102,
+      "mape_kcal_ci95": [0.092, 0.112],
+      "top_1": 0.678,
+      "source": "open-source",
+      "notes": "First SigLIP run against mini-180."
+    }
+  ]
+}

@@ -28,6 +28,13 @@ def test_base_requires_subclass():
         FoodRecognitionSystem()  # type: ignore[abstract]
 
 
+def test_dummy_system_metadata():
+    s = _DummySystem()
+    meta = s.metadata()
+    assert meta["name"] == "dummy"
+    assert meta["kind"] == "open-source"
+
+
 def test_runner_with_dummy_system_computes_metrics():
     system = _DummySystem()
     samples = [

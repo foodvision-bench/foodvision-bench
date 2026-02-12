@@ -21,6 +21,11 @@ def _load_siglip() -> FoodRecognitionSystem:
     return SigLIPBaseline()
 
 
+def _load_platelens() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.platelens import PlateLensAdapter
+    return PlateLensAdapter()
+
+
 REGISTRY: dict[str, dict[str, Any]] = {
     "clip-vit-l": {
         "kind": "open-source",
@@ -31,6 +36,11 @@ REGISTRY: dict[str, dict[str, Any]] = {
         "kind": "open-source",
         "description": "SigLIP-SO-14 zero-shot classifier over Food-101 labels.",
         "loader": _load_siglip,
+    },
+    "platelens": {
+        "kind": "vendor",
+        "description": "PlateLens adapter (vendor-reported number; first commercial app benchmarked).",
+        "loader": _load_platelens,
     },
 }
 

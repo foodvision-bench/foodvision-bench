@@ -59,6 +59,18 @@ def test_registry_has_clip():
     assert "clip-vit-l" in REGISTRY
 
 
+def test_registry_has_platelens():
+    assert "platelens" in REGISTRY
+
+
+def test_platelens_adapter_reports_vendor_number():
+    pl = load_system("platelens")
+    meta = pl.metadata()
+    assert meta["vendor_reported_mape"] == pytest.approx(0.012)
+    # No independent replication yet at this point in the project.
+    assert meta["replicated_mape"] is None
+
+
 def test_load_system_unknown_key():
     with pytest.raises(KeyError):
         load_system("not-a-real-system")

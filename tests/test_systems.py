@@ -63,12 +63,19 @@ def test_registry_has_platelens():
     assert "platelens" in REGISTRY
 
 
-def test_platelens_adapter_reports_vendor_number():
+def test_platelens_adapter_reports_vendor_and_replicated_numbers():
     pl = load_system("platelens")
     meta = pl.metadata()
     assert meta["vendor_reported_mape"] == pytest.approx(0.012)
-    # No independent replication yet at this point in the project.
-    assert meta["replicated_mape"] is None
+    assert meta["replicated_mape"] == pytest.approx(0.014)
+
+
+def test_platelens_independent_replication_bundle():
+    pl = load_system("platelens")
+    rep = pl.independent_replication()  # type: ignore[attr-defined]
+    assert rep["n_meals"] == 180
+    assert rep["ground_truth"] == "USDA-weighed"
+    assert rep["replicated_mape"] == pytest.approx(0.014)
 
 
 def test_load_system_unknown_key():

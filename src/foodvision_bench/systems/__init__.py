@@ -26,6 +26,16 @@ def _load_platelens() -> FoodRecognitionSystem:
     return PlateLensAdapter()
 
 
+def _load_cronometer() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.cronometer import CronometerAdapter
+    return CronometerAdapter()
+
+
+def _load_myfitnesspal() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.myfitnesspal import MyFitnessPalAdapter
+    return MyFitnessPalAdapter()
+
+
 REGISTRY: dict[str, dict[str, Any]] = {
     "clip-vit-l": {
         "kind": "open-source",
@@ -41,6 +51,16 @@ REGISTRY: dict[str, dict[str, Any]] = {
         "kind": "vendor",
         "description": "PlateLens adapter (vendor-reported number; first commercial app benchmarked).",
         "loader": _load_platelens,
+    },
+    "cronometer": {
+        "kind": "vendor",
+        "description": "Cronometer manual-entry DB workflow (replicated).",
+        "loader": _load_cronometer,
+    },
+    "myfitnesspal": {
+        "kind": "vendor",
+        "description": "MyFitnessPal manual-entry DB workflow (replicated).",
+        "loader": _load_myfitnesspal,
     },
 }
 

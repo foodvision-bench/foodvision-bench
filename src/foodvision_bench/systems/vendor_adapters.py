@@ -8,14 +8,18 @@ specific vendor module so the provenance of each number is unambiguous.
 from __future__ import annotations
 
 from foodvision_bench.systems.vendors._base import VendorNumbers, _VendorAdapter
+from foodvision_bench.systems.vendors.bitesnap import BitesnapAdapter
 from foodvision_bench.systems.vendors.cronometer import CronometerAdapter
+from foodvision_bench.systems.vendors.foodvisor import FoodvisorAdapter
 from foodvision_bench.systems.vendors.myfitnesspal import MyFitnessPalAdapter
 from foodvision_bench.systems.vendors.platelens import PlateLensAdapter
 
 __all__ = [
     "VendorNumbers",
     "_VendorAdapter",
+    "BitesnapAdapter",
     "CronometerAdapter",
+    "FoodvisorAdapter",
     "MyFitnessPalAdapter",
     "PlateLensAdapter",
 ]

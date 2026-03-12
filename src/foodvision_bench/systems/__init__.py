@@ -36,6 +36,16 @@ def _load_myfitnesspal() -> FoodRecognitionSystem:
     return MyFitnessPalAdapter()
 
 
+def _load_foodvisor() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.foodvisor import FoodvisorAdapter
+    return FoodvisorAdapter()
+
+
+def _load_bitesnap() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.bitesnap import BitesnapAdapter
+    return BitesnapAdapter()
+
+
 REGISTRY: dict[str, dict[str, Any]] = {
     "clip-vit-l": {
         "kind": "open-source",
@@ -61,6 +71,16 @@ REGISTRY: dict[str, dict[str, Any]] = {
         "kind": "vendor",
         "description": "MyFitnessPal manual-entry DB workflow (replicated).",
         "loader": _load_myfitnesspal,
+    },
+    "foodvisor": {
+        "kind": "vendor",
+        "description": "Foodvisor photo-based recognition via public demo (replicated).",
+        "loader": _load_foodvisor,
+    },
+    "bitesnap": {
+        "kind": "vendor",
+        "description": "Bitesnap photo-based recognition via public app (replicated).",
+        "loader": _load_bitesnap,
     },
 }
 

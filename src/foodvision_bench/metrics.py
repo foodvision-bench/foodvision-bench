@@ -5,6 +5,7 @@ pulling in torch or a full training harness.
 """
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from typing import Any
 
@@ -53,3 +54,35 @@ def top_1_accuracy(
         raise ValueError("cannot compute accuracy on empty input")
     correct = sum(1 for a, b in zip(y_true, y_pred, strict=True) if a == b)
     return correct / len(y_true)
+
+
+def per_category_breakdown(
+    y_true_labels: Sequence[Any],
+    y_true_kcal: Sequence[float],
+    y_pred_kcal: Sequence[float],
+) -> dict[str, dict[str, float]]:
+    """Group MAPE and sample count by ground-truth category label.
+
+    Returns a mapping ``{category: {"mape": float, "n": int}}`` so callers
+    can sort / threshold / render a table.
+    """
+    if not (len(y_true_labels) == len(y_true_kcal) == len(y_pred_kcal)):
+        raise ValueError("all three input sequences must be the same length")
+    if len(y_true_labels) == 0:
+        return {}
+
+    buckets: dict[Any, list[tuple[float, float]]] = defaultdict(list)
+    for label, t, p in zip(y_true_labels, y_true_kcal, y_pred_kcal, strict=True):
+        buckets[label].append((float(t), float(p)))
+
+    out: dict[str, dict[str, float]] = {}
+    for label, pairs in buckets.items():
+        trues = [t for t, _ in pairs]
+        preds = [p for _, p in pairs]
+        try:
+            cat_mape = mape(trues, preds)
+        except ValueError:
+            # e.g. zero in trues for that category
+            cat_mape = float("nan")
+        out[str(label)] = {"mape": cat_mape, "n": len(pairs)}
+    return out

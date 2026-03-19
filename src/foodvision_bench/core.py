@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
-from foodvision_bench.metrics import mape, top_1_accuracy
+from foodvision_bench.metrics import mape, per_category_breakdown, top_1_accuracy
 
 
 @dataclass
@@ -16,6 +16,7 @@ class BenchmarkResult:
     n: int
     top_1: float | None
     mape_kcal: float | None
+    per_category: dict[str, dict[str, float]] = field(default_factory=dict)
     latency_s_per_image: float | None = None
     notes: str | None = None
 
@@ -27,13 +28,19 @@ class BenchmarkResult:
             "n": self.n,
             "top_1": self.top_1,
             "mape_kcal": self.mape_kcal,
+            "per_category": self.per_category,
             "latency_s_per_image": self.latency_s_per_image,
             "notes": self.notes,
         }
 
 
 class BenchmarkRunner:
-    """Runs a FoodRecognitionSystem against a list of (image, ground_truth) pairs."""
+    """Runs a FoodRecognitionSystem against a list of (image, ground_truth) pairs.
+
+    A ``ground_truth`` dict is expected to carry at least a ``label`` (str)
+    and a ``kcal`` (float). Missing keys are tolerated: the corresponding
+    metric will be None in the result.
+    """
 
     def __init__(self, system: Any, test_set_name: str = "unknown") -> None:
         self.system = system
@@ -62,8 +69,14 @@ class BenchmarkRunner:
                 true_kcal.append(float(truth["kcal"]))
                 pred_kcal.append(float(portion["kcal"]))
 
-        top_1 = top_1_accuracy(true_labels, pred_labels) if true_labels else None
+        top_1 = (
+            top_1_accuracy(true_labels, pred_labels) if true_labels else None
+        )
         mape_k = mape(true_kcal, pred_kcal) if true_kcal else None
+        per_cat: dict[str, dict[str, float]] = {}
+        if true_labels and true_kcal and len(true_labels) == len(true_kcal):
+            per_cat = per_category_breakdown(true_labels, true_kcal, pred_kcal)
+
         mean_latency = sum(latencies) / len(latencies) if latencies else None
 
         return BenchmarkResult(
@@ -73,5 +86,6 @@ class BenchmarkRunner:
             n=len(samples),
             top_1=top_1,
             mape_kcal=mape_k,
+            per_category=per_cat,
             latency_s_per_image=mean_latency,
         )

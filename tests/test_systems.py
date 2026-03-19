@@ -47,6 +47,8 @@ def test_runner_with_dummy_system_computes_metrics():
     assert result.n == 3
     assert result.top_1 == pytest.approx(2 / 3)
     assert result.mape_kcal is not None
+    assert "pizza" in result.per_category
+    assert result.per_category["pizza"]["n"] == 2
 
 
 def test_runner_empty_raises():

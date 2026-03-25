@@ -46,6 +46,21 @@ def _load_bitesnap() -> FoodRecognitionSystem:
     return BitesnapAdapter()
 
 
+def _load_macrofactor() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.macrofactor import MacroFactorAdapter
+    return MacroFactorAdapter()
+
+
+def _load_loseit() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.loseit import LoseItAdapter
+    return LoseItAdapter()
+
+
+def _load_noom() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.noom import NoomAdapter
+    return NoomAdapter()
+
+
 REGISTRY: dict[str, dict[str, Any]] = {
     "clip-vit-l": {
         "kind": "open-source",
@@ -81,6 +96,21 @@ REGISTRY: dict[str, dict[str, Any]] = {
         "kind": "vendor",
         "description": "Bitesnap photo-based recognition via public app (replicated).",
         "loader": _load_bitesnap,
+    },
+    "macrofactor": {
+        "kind": "vendor",
+        "description": "MacroFactor DB workflow (replicated).",
+        "loader": _load_macrofactor,
+    },
+    "loseit": {
+        "kind": "vendor",
+        "description": "Lose It! DB + Snap-It workflow (replicated).",
+        "loader": _load_loseit,
+    },
+    "noom": {
+        "kind": "vendor",
+        "description": "Noom food-log workflow (replicated).",
+        "loader": _load_noom,
     },
 }
 

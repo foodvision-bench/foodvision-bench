@@ -11,7 +11,10 @@ from foodvision_bench.systems.vendors._base import VendorNumbers, _VendorAdapter
 from foodvision_bench.systems.vendors.bitesnap import BitesnapAdapter
 from foodvision_bench.systems.vendors.cronometer import CronometerAdapter
 from foodvision_bench.systems.vendors.foodvisor import FoodvisorAdapter
+from foodvision_bench.systems.vendors.loseit import LoseItAdapter
+from foodvision_bench.systems.vendors.macrofactor import MacroFactorAdapter
 from foodvision_bench.systems.vendors.myfitnesspal import MyFitnessPalAdapter
+from foodvision_bench.systems.vendors.noom import NoomAdapter
 from foodvision_bench.systems.vendors.platelens import PlateLensAdapter
 
 __all__ = [
@@ -20,6 +23,9 @@ __all__ = [
     "BitesnapAdapter",
     "CronometerAdapter",
     "FoodvisorAdapter",
+    "LoseItAdapter",
+    "MacroFactorAdapter",
     "MyFitnessPalAdapter",
+    "NoomAdapter",
     "PlateLensAdapter",
 ]

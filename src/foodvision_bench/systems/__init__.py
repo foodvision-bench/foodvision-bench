@@ -46,6 +46,11 @@ def _load_bitesnap() -> FoodRecognitionSystem:
     return BitesnapAdapter()
 
 
+def _load_calorie_mama() -> FoodRecognitionSystem:
+    from foodvision_bench.systems.vendors.calorie_mama import CalorieMamaAdapter
+    return CalorieMamaAdapter()
+
+
 def _load_macrofactor() -> FoodRecognitionSystem:
     from foodvision_bench.systems.vendors.macrofactor import MacroFactorAdapter
     return MacroFactorAdapter()
@@ -96,6 +101,11 @@ REGISTRY: dict[str, dict[str, Any]] = {
         "kind": "vendor",
         "description": "Bitesnap photo-based recognition via public app (replicated).",
         "loader": _load_bitesnap,
+    },
+    "calorie-mama": {
+        "kind": "vendor",
+        "description": "Calorie Mama API adapter (vendor-reported).",
+        "loader": _load_calorie_mama,
     },
     "macrofactor": {
         "kind": "vendor",

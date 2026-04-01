@@ -25,7 +25,7 @@ class CronometerAdapter(_VendorAdapter):
     """
 
     name = "Cronometer"
-    version = "2026-02-db"
+    version = "2026-03-db"
     numbers = VendorNumbers(
         replicated_mape=0.068,
         notes="Manual-entry workflow; replicated MAPE assumes correct DB selection.",

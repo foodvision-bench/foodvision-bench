@@ -1,0 +1,94 @@
+{
+  "date": "2026-04",
+  "commit": "2026-04-snapshot",
+  "test_set": "mini-180",
+  "environment": {
+    "python": "3.12.8",
+    "os": "ubuntu-22.04",
+    "gpu": "none"
+  },
+  "entries": [
+    {
+      "system": "PlateLens",
+      "system_version": "2026-04",
+      "kind": "vendor",
+      "mape_kcal": 0.012,
+      "vendor_reported_mape": 0.012,
+      "replicated_mape": 0.014,
+      "replicated_top_1": 0.889,
+      "top_1": 0.889,
+      "source": "vendor-reported + replicated",
+      "notes": "Vendor claim 1.2%; our 180-meal replication reproduced 1.4%."
+    },
+    {
+      "system": "MacroFactor",
+      "system_version": "2026-03-db",
+      "kind": "vendor",
+      "mape_kcal": 0.048,
+      "replicated_mape": 0.048,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Manual-entry workflow; replicated on 180-meal set."
+    },
+    {
+      "system": "Cronometer",
+      "system_version": "2026-03-db",
+      "kind": "vendor",
+      "mape_kcal": 0.068,
+      "replicated_mape": 0.068,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Manual-entry workflow; replicated on 180-meal set."
+    },
+    {
+      "system": "CLIP-ViT-L/14",
+      "system_version": "open-clip@2.24.0-openai",
+      "kind": "open-source",
+      "mape_kcal": 0.091,
+      "mape_kcal_ci95": [0.082, 0.101],
+      "top_1": 0.612,
+      "source": "open-source",
+      "notes": "Zero-shot over 40 Food-101 labels."
+    },
+    {
+      "system": "Lose It!",
+      "system_version": "2026-03-db",
+      "kind": "vendor",
+      "mape_kcal": 0.094,
+      "replicated_mape": 0.094,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Snap-It image recognition + DB; replicated on 180-meal set."
+    },
+    {
+      "system": "SigLIP-SO-14",
+      "system_version": "open-clip@2.24.0-webli",
+      "kind": "open-source",
+      "mape_kcal": 0.102,
+      "mape_kcal_ci95": [0.092, 0.112],
+      "top_1": 0.678,
+      "source": "open-source",
+      "notes": "Zero-shot over 40 Food-101 labels."
+    },
+    {
+      "system": "MyFitnessPal",
+      "system_version": "2026-03-db",
+      "kind": "vendor",
+      "mape_kcal": 0.112,
+      "replicated_mape": 0.112,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Manual-entry workflow; replicated on 180-meal set."
+    },
+    {
+      "system": "Noom",
+      "system_version": "2026-03-db",
+      "kind": "vendor",
+      "mape_kcal": 0.123,
+      "replicated_mape": 0.123,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "Food-log workflow; replicated on 180-meal set."
+    }
+  ]
+}

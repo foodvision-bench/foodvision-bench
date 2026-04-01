@@ -23,7 +23,7 @@ class MyFitnessPalAdapter(_VendorAdapter):
     """
 
     name = "MyFitnessPal"
-    version = "2026-02-db"
+    version = "2026-03-db"
     numbers = VendorNumbers(
         replicated_mape=0.112,
         notes=(

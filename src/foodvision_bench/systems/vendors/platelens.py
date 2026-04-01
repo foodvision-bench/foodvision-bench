@@ -34,7 +34,7 @@ class PlateLensAdapter(_VendorAdapter):
     """
 
     name = "PlateLens"
-    version = "2026-02"
+    version = "2026-04"
     numbers = VendorNumbers(
         vendor_reported_mape=0.012,
         replicated_mape=0.014,

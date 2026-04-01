@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from foodvision_bench.systems.vendors._base import VendorNumbers, _VendorAdapter
 from foodvision_bench.systems.vendors.bitesnap import BitesnapAdapter
+from foodvision_bench.systems.vendors.calorie_mama import CalorieMamaAdapter
 from foodvision_bench.systems.vendors.cronometer import CronometerAdapter
 from foodvision_bench.systems.vendors.foodvisor import FoodvisorAdapter
 from foodvision_bench.systems.vendors.loseit import LoseItAdapter
@@ -21,6 +22,7 @@ __all__ = [
     "VendorNumbers",
     "_VendorAdapter",
     "BitesnapAdapter",
+    "CalorieMamaAdapter",
     "CronometerAdapter",
     "FoodvisorAdapter",
     "LoseItAdapter",

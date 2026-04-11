@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use Foodvision Bench in academic work or in a published comparison of food-recognition systems, please cite it using the metadata below."
+title: "Foodvision Bench"
+abstract: "Open reproducible benchmarks for food-image recognition models and commercial nutrition APIs."
+authors:
+  - name: "Foodvision Bench Contributors"
+version: "0.2.1"
+date-released: "2026-04-15"
+url: "https://github.com/foodvision-bench/foodvision-bench"
+repository-code: "https://github.com/foodvision-bench/foodvision-bench"
+license: MIT
+keywords:
+  - "benchmark"
+  - "food-recognition"
+  - "computer-vision"
+  - "nutrition"
+  - "reproducibility"
+  - "calorie-estimation"
+  - "MAPE"

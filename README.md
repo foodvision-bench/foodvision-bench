@@ -6,6 +6,9 @@ nutrition APIs.
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![CI](https://github.com/foodvision-bench/foodvision-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/foodvision-bench/foodvision-bench/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/foodvision-bench/foodvision-bench?include_prereleases)](https://github.com/foodvision-bench/foodvision-bench/releases)
+[![Downloads](https://img.shields.io/github/downloads/foodvision-bench/foodvision-bench/total)](https://github.com/foodvision-bench/foodvision-bench/releases)
+[![Last commit](https://img.shields.io/github/last-commit/foodvision-bench/foodvision-bench)](https://github.com/foodvision-bench/foodvision-bench/commits/main)
 
 ## What this is
 

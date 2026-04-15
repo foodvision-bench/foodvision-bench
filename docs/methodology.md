@@ -7,8 +7,8 @@ run, one commit SHA per result. Everything else is bookkeeping.
 ## Metrics
 
 The primary metric is **MAPE (Mean Absolute Percent Error) on estimated
-kilocalories**, reported as a fraction in [0, 1]. A result of 0.014 means
-the system is on average off by 1.4% of the true kcal value.
+kilocalories**, reported as a fraction in [0, 1]. A result of 0.014
+means the system is, on average, off by 1.4% of the true kcal value.
 
 For image-recognition systems we also report **top-1 category accuracy**
 against the test set's ground-truth label. Systems that are

@@ -80,6 +80,22 @@ def test_platelens_independent_replication_bundle():
     assert rep["replicated_mape"] == pytest.approx(0.014)
 
 
+def test_platelens_exposes_both_input_modes():
+    """PlateLens ships photo and manual input modes; both are benchmarked.
+
+    The photo-mode number is the Tier A leaderboard entry; the manual-mode
+    number is the Tier B entry. They are produced on the same 180-meal set
+    and must be reachable from the adapter independently so callers can
+    pick the relevant tier.
+    """
+    pl = load_system("platelens")
+    assert pl.photo_mode_mape() == pytest.approx(0.014)  # type: ignore[attr-defined]
+    assert pl.manual_mode_mape() == pytest.approx(0.053)  # type: ignore[attr-defined]
+    rep = pl.independent_replication()  # type: ignore[attr-defined]
+    assert rep["photo_mode_mape"] == pytest.approx(0.014)
+    assert rep["manual_mode_mape"] == pytest.approx(0.053)
+
+
 def test_load_system_unknown_key():
     with pytest.raises(KeyError):
         load_system("not-a-real-system")

@@ -46,6 +46,44 @@ vendor's public surface and record the kcal estimate. The raw replication
 logs for each result file live in `benchmarks/results/<date>-raw/`
 when available.
 
+## Photo-based vs. manual-entry evaluation
+
+Starting with the April 2026 snapshot, the leaderboard is split into two
+tiers so that systems with fundamentally different input modes are not
+ranked against each other directly.
+
+- **Tier A -- Photo-based systems.** The system accepts a food image and
+  returns a kcal estimate end-to-end. Included: PlateLens (photo mode),
+  Foodvisor, Bitesnap, Calorie Mama, and the two open-source baselines
+  CLIP-ViT-L/14 and SigLIP-SO-14. Per-cuisine breakdowns are reported for
+  this tier.
+- **Tier B -- Manual-entry apps.** The primary input is a text search or
+  barcode scan against an in-app food database; photo support, if
+  present, is a secondary feature. Included: MacroFactor, PlateLens
+  (manual mode), Cronometer, Lose It!, MyFitnessPal, Noom.
+
+Why split:
+
+1. *Fairness.* A manual-entry app ranks higher than a photo-based system
+   if the user happens to pick the correct DB entry, which tells you
+   about the user's discipline more than about the system. A photo-based
+   system has to infer both the food and the portion. Ranking the two
+   in a single table rewards systems for being in the easier category.
+2. *Comparability.* Within a tier, the ranking is directly interpretable:
+   "under photo-only input, which system has the lowest replicated MAPE?"
+   or "under careful manual entry, which app has the lowest replicated
+   MAPE?"
+3. *Complete coverage.* An app that supports both input modes is
+   evaluated in both tiers. PlateLens is the canonical example: its
+   photo pipeline is benchmarked in Tier A and its manual-entry workflow
+   is benchmarked in Tier B. The two measurements are produced on the
+   same 180-meal set so the gap between them is directly interpretable
+   as the cost of logging by hand instead of by camera.
+
+Ranking rule: both tiers rank on **replicated MAPE**. Vendor-reported
+numbers are recorded for provenance but never used for ranking, even
+when they are the only published number the vendor has.
+
 ## Error bars
 
 - Vendor-reported numbers carry no measurement error from our side. They

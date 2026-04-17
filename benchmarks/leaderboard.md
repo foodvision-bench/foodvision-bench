@@ -24,3 +24,30 @@ Notes:
   do not have a conventional top-1.
 - See [`../docs/methodology.md`](../docs/methodology.md) for how these
   numbers are computed.
+
+## Per-cuisine MAPE breakdown
+
+Coarse split over the 180-meal test set. Per-cuisine N is small (35-62
+meals per bucket), so these numbers should be read with wider confidence
+intervals than the overall MAPE above. See the roadmap for planned
+expansion.
+
+| System         | Western (N=62) | East Asian (N=41) | Mediterranean (N=35) |
+| -------------- | -------------- | ----------------- | -------------------- |
+| PlateLens      | 1.3%           | 1.6%              | 1.4%                 |
+| MacroFactor    | 4.6%           | 5.7%              | 4.9%                 |
+| Cronometer     | 6.4%           | 8.0%              | 6.7%                 |
+| CLIP-ViT-L/14  | 8.3%           | 12.7%             | 9.4%                 |
+| Lose It!       | 9.1%           | 10.8%             | 9.3%                 |
+| SigLIP-SO-14   | 9.6%           | 13.1%             | 10.2%                |
+| MyFitnessPal   | 10.9%          | 13.2%             | 11.1%                |
+| Noom           | 12.0%          | 14.1%             | 12.3%                |
+
+Observations:
+
+- Open-source baselines (CLIP, SigLIP) degrade most on East Asian cuisine,
+  consistent with their training distribution skewing Western.
+- Commercial apps with human-curated food databases are more consistent
+  across cuisines, at the cost of logging speed.
+- Remaining cuisines (South Asian, Latin American, Middle Eastern) have
+  N < 20 in the current test set and are omitted until coverage improves.

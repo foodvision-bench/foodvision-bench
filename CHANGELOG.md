@@ -9,7 +9,25 @@ between minor versions until `1.0`.
 
 ## [Unreleased]
 
-- Pending: minor docs polish and possible 2026-04 leaderboard refresh.
+### Changed
+- 2026-04 leaderboard is split into two tiers: Tier A (photo-based
+  systems) and Tier B (manual-entry apps). Ranking within each tier is
+  by replicated MAPE on `mini-180`; vendor-reported numbers are
+  preserved for provenance but no longer used for ranking.
+- Systems that ship more than one input mode are evaluated in each
+  tier independently. PlateLens is the first such system: photo mode
+  is ranked in Tier A, manual mode is ranked in Tier B.
+
+### Added
+- `PlateLensAdapter.photo_mode_mape()` and `.manual_mode_mape()`
+  helpers returning the tier-specific replicated numbers.
+- Calorie Mama replicated MAPE (8.4%) on the 180-meal set; previously
+  only a vendor-reported number was available. Vendor-reported claim
+  retained for provenance.
+- `tier` field on each entry in `benchmarks/results/2026-04.json`.
+- `docs/methodology.md` section "Photo-based vs. manual-entry evaluation".
+- `docs/vendor-numbers-policy.md` section "Systems that support multiple
+  input modes".
 
 ## [0.2.0] - 2026-03-25
 

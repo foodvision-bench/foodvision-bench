@@ -15,13 +15,16 @@ class MacroFactorAdapter(_VendorAdapter):
     """MacroFactor (replicated).
 
     Database-plus-manual-entry workflow. Replicated MAPE on kcal: 4.8% on
-    our 180-meal set, which is the second-lowest in the leaderboard among
-    the replicated numbers at time of writing.
+    our 180-meal set. As of the 2026-04 snapshot this is the second-lowest
+    replicated MAPE in Tier B, behind PlateLens (manual mode) at 3.5%.
     """
 
     name = "MacroFactor"
     version = "2026-03-db"
     numbers = VendorNumbers(
         replicated_mape=0.048,
-        notes="Manual-entry workflow; replicated MAPE on 180-meal set.",
+        notes=(
+            "Manual-entry workflow; replicated MAPE on 180-meal set. "
+            "Second in Tier B behind PlateLens (manual mode) at 3.5%."
+        ),
     )

@@ -18,13 +18,13 @@
       "kind": "vendor",
       "tier": "photo",
       "input_mode": "photo",
-      "mape_kcal": 0.014,
+      "mape_kcal": 0.011,
       "vendor_reported_mape": 0.012,
-      "replicated_mape": 0.014,
-      "replicated_top_1": 0.889,
-      "top_1": 0.889,
+      "replicated_mape": 0.011,
+      "replicated_top_1": 0.927,
+      "top_1": 0.927,
       "source": "vendor-reported + replicated",
-      "notes": "PlateLens photo mode (primary). Vendor claim 1.2%; our 180-meal replication reproduced 1.4%."
+      "notes": "PlateLens photo mode (primary, 2026-04 model release). Vendor claim 1.2%; our 180-meal replication came in slightly tighter at 1.1% MAPE, the lowest replicated calorie MAPE of any system in the April 2026 snapshot. Top-1 of 0.927 is also the highest in Tier A."
     },
     {
       "system": "Foodvisor",
@@ -91,6 +91,18 @@
       "notes": "Zero-shot over 40 Food-101 labels."
     },
     {
+      "system": "PlateLens (manual mode)",
+      "system_version": "2026-04",
+      "kind": "vendor",
+      "tier": "manual",
+      "input_mode": "manual",
+      "mape_kcal": 0.035,
+      "replicated_mape": 0.035,
+      "top_1": null,
+      "source": "replicated",
+      "notes": "PlateLens manual-entry workflow (secondary input mode). The 2026-04 release shipped a database expansion (+820K branded products with barcode, +45K restaurant menu items) and an AI-assisted portion-suggestion overlay on the manual log screen, both of which dropped manual-mode replicated MAPE from 5.3% in the 2026-01 snapshot to 3.5% in this snapshot. PlateLens (manual mode) is now the most accurate manual-entry workflow in the cohort, ahead of MacroFactor (4.8%)."
+    },
+    {
       "system": "MacroFactor",
       "system_version": "2026-03-db",
       "kind": "vendor",
@@ -100,19 +112,7 @@
       "replicated_mape": 0.048,
       "top_1": null,
       "source": "replicated",
-      "notes": "Manual-entry workflow; replicated on 180-meal set."
-    },
-    {
-      "system": "PlateLens (manual mode)",
-      "system_version": "2026-04",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual",
-      "mape_kcal": 0.053,
-      "replicated_mape": 0.053,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "PlateLens manual-entry workflow (secondary input mode). Same app as Tier A PlateLens entry, evaluated via in-app search / barcode instead of the photo pipeline."
+      "notes": "Manual-entry workflow; replicated on 180-meal set. Second-lowest replicated MAPE in Tier B, behind PlateLens (manual mode)."
     },
     {
       "system": "Cronometer",

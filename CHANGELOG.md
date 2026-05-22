@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with the caveat that the leading `0.x` line may still make breaking changes
 between minor versions until `1.0`.
 
-## [Unreleased]
+## [0.3.1] - 2026-05-22
 
 ### Added
 - `mini-215` test set: extended `mini-180` with two new cuisine

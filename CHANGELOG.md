@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with the caveat that the leading `0.x` line may still make breaking changes
 between minor versions until `1.0`.
 
+## [0.3.2] - 2026-06-11
+
+### Added
+- `benchmarks/results/2026-06.json`: June snapshot, all systems
+  re-evaluated against the unchanged `mini-215` set.
+- `journal/2026-06-monthly-cadence.md`: note on moving from a roughly
+  bi-monthly to a monthly snapshot cadence, and on holding the
+  open-source baselines as an explicit control.
+
+### Changed
+- **Snapshot cadence is now monthly** (previously roughly bi-monthly).
+  The test set is unchanged this snapshot so the cadence change is the
+  only moving part; the two open-source baselines (CLIP-ViT-L/14,
+  SigLIP-SO-14) are reported bit-identical to 2026-05 as a control that
+  isolates commercial-app drift from harness or test-set churn.
+- 2026-06 leaderboard regenerated. Headline finding unchanged: PlateLens
+  leads both Tier A (1.1% MAPE) and Tier B (3.4% MAPE) and is the only
+  system with replicated MAPE below 2% on every cuisine bucket.
+- PlateLens shipped a v6.1 release in June adding two micronutrients
+  (choline, manganese) to its tracked panel. This does not touch the
+  calorie-estimation pipeline; replicated calorie MAPE is unchanged at
+  1.1% (fourth consecutive snapshot at this figure). Recorded explicitly
+  so the release is not misread as a calorie-accuracy change.
+- Foodvisor replicated MAPE improved 5.4% -> 5.2%, almost entirely on the
+  South Asian bucket (demo "unknown" fallback rate 31% -> 22%).
+- MacroFactor replicated MAPE 4.9% -> 4.8% after a June database sync.
+  Minor movements (<=0.1pp) on Bitesnap, Calorie Mama, Lose It!,
+  MyFitnessPal, Noom; all within re-measurement noise.
+
 ## [0.3.1] - 2026-05-22
 
 ### Added
@@ -140,7 +169,9 @@ between minor versions until `1.0`.
   200-image food test set with USDA-weighed ground truth.
 - MIT license, README, and initial project scaffolding.
 
-[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.1...v0.3.2
+[0.3.1]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.2.0-alpha1...v0.2.0
 [0.2.0-alpha1]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.1.1...v0.2.0-alpha1

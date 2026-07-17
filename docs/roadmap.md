@@ -4,20 +4,30 @@ A short, living document of what's being worked on and what's on the radar.
 Priorities shift with available time; pull requests that align with these
 directions are welcome.
 
+## Shipped recently
+
+- **Per-cuisine accuracy breakdown.** *Shipped (2026-04, expanded 2026-05).*
+  The leaderboard now reports per-cuisine MAPE for Tier A across five
+  buckets. Note the small per-bucket N (17-62) — the breakdown is
+  directional for the small buckets, not definitive; see
+  `docs/methodology.md`.
+- **First cuisine-coverage expansion.** *Shipped (2026-05).* `mini-180`
+  became `mini-215` with South Asian (N=18) and Latin American (N=17)
+  buckets. This reduced but did not remove the Western skew.
+
 ## Near term (next 1-2 releases)
 
-- **Per-cuisine accuracy breakdown.** Today the leaderboard reports a single
-  overall MAPE per system. Per-cuisine breakdown (Western, East Asian,
-  Mediterranean, etc.) would surface where models generalize and where they
-  don't. Tracked in the per-cuisine issue.
+- **Middle Eastern and Sub-Saharan African buckets.** The next test-set
+  expansion. Contributor weighed-meal batches are being collected but are
+  still under N=12 each, too small to publish. Targeted for 2026-Q3.
 - **Yazio adapter.** Several readers have asked. Yazio does not expose a public
   inference API with per-meal metadata, so this requires an independent
   replication run (manual logging of 50-100 meals against USDA-weighed ground
   truth). Looking for a contributor willing to run that replication; see the
   Yazio adapter issue for details.
-- **Broader cuisine coverage in the test set.** The current test set is
-  Food-101 derived and skews Western. Candidates for expansion: UEC-FOOD-256
-  subsets, plus a small weighed-meal collection outside North America.
+- **Larger overall N.** 215 meals separates systems that differ by whole
+  points but is too small to certify production accuracy. Growing the set
+  toward a 500-meal tier is tracked under the long-term item below.
 
 ## Medium term
 

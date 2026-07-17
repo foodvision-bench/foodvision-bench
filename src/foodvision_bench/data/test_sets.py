@@ -25,10 +25,26 @@ class TestSet:
 
 
 _REGISTRY: dict[str, TestSet] = {
+    "mini-215": TestSet(
+        name="mini-215",
+        n=215,
+        description=(
+            "215 USDA-weighed meals spanning 40 food categories across five "
+            "cuisine buckets (Western 62, East Asian 41, Mediterranean 35, "
+            "South Asian 18, Latin American 17). Active primary set since the "
+            "2026-05 snapshot; extends mini-180."
+        ),
+        ground_truth="USDA FoodData Central lookup per weighed ingredient.",
+    ),
     "mini-180": TestSet(
         name="mini-180",
         n=180,
-        description="180 USDA-weighed meals spanning 40 food categories.",
+        description=(
+            "180 USDA-weighed meals spanning 40 food categories. Predecessor "
+            "of mini-215; retired as the primary set in 2026-05 but kept "
+            "registered so historical snapshots (2025-11 .. 2026-04) remain "
+            "resolvable. Western-skewed."
+        ),
         ground_truth="USDA FoodData Central lookup per weighed ingredient.",
     ),
     "food101-test-500": TestSet(

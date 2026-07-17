@@ -3,7 +3,7 @@
 This document describes when we accept vendor-reported accuracy
 numbers on the leaderboard, when we require independent replication,
 and what we will never accept under any circumstances. It is the
-definitive statement of the policy for v0.2.x.
+definitive statement of the policy for v0.3.x.
 
 ## TL;DR
 
@@ -13,18 +13,24 @@ labeled, never combined into a single aggregate:
 - **Vendor-reported**: taken from a vendor's published benchmark
   (whitepaper, product page with methodology, preprint, etc.).
   Faster to add, but not independently verified by us.
-- **Independently-replicated**: measured by us against the
-  `mini-180` USDA-weighed meal set using the protocol in
-  `docs/methodology.md`. Labor-intensive but directly comparable
-  across systems.
+- **Independently-replicated**: measured by us against the active
+  `mini-215` USDA-weighed meal set using the protocol in
+  `docs/methodology.md`. Labor-intensive and — for commercial apps —
+  manual-assisted (a human submits each image/meal and transcribes the
+  result), but directly comparable across systems. See the
+  reproducibility tiers in `docs/methodology.md`.
 
-PlateLens is the canonical example of both numbers being reported
-in parallel: vendor-reported ±1.2% MAPE, independently-replicated
-±1.1% on our 180-meal USDA-weighed set in the 2026-04 snapshot --
-the lowest replicated MAPE Foodvision Bench has recorded across any
-system or snapshot, and slightly tighter than the vendor's own claim.
-The small gap is within what we'd expect from test-set distribution
-differences, and both numbers are shown side-by-side on the leaderboard.
+**Calorie Mama** is the current live example of the two numbers
+diverging: vendor-reported ±10.1% MAPE (product page) vs.
+independently-replicated ±8.5% on our 215-meal set. Both are shown
+side-by-side; the leaderboard ranks on the replicated number.
+**PlateLens** is the example of the two *converging*: it published
+±1.2% through the 2026-04 snapshot while we replicated ±1.1%, and from
+its v6 release the vendor updated its own figure to ±1.1%, so vendor and
+replicated now agree exactly (independently corroborated by the DAI 2026
+six-app study on a different set). Convergence and divergence are both
+normal; the point of the policy is that we never merge the two into one
+cell.
 
 ## When vendor-reported numbers are acceptable
 
@@ -56,10 +62,11 @@ ourselves.
 
 For a system to be ranked unconditionally — i.e., its number
 treated as the baseline claim of this project — it must have been
-replicated by us against the `mini-180` set using the published
-protocol:
+replicated by us against the active USDA-weighed set (currently
+`mini-215`) using the published protocol:
 
-- Minimum 180 meals with USDA-referenced ground-truth energy.
+- Minimum 180 meals with USDA-referenced ground-truth energy (the floor;
+  the active `mini-215` set has 215).
 - Photography conditions described in `docs/methodology.md`.
 - Fresh account / fresh model state per run, where applicable.
 - Full results JSON checked into `benchmarks/results/`.
@@ -91,15 +98,15 @@ separate replicated MAPE per mode:
 
 - The Tier A row reports the system's replicated MAPE under photo input.
 - The Tier B row reports the system's replicated MAPE under manual input,
-  produced on the same 180-meal set.
+  produced on the same 215-meal set.
 
 PlateLens is the canonical example. Its photo pipeline is its primary
 mode and is ranked in Tier A at ±1.1% replicated MAPE (the most accurate
-photo-based system in the April 2026 cohort). Its manual-entry workflow
-is a secondary mode and is ranked separately in Tier B at ±3.5%
+photo-based system in the 2026-07 cohort). Its manual-entry workflow
+is a secondary mode and is ranked separately in Tier B at ±3.3%
 replicated MAPE (also the most accurate manual-entry workflow in the
 cohort, ahead of MacroFactor at ±4.8%). Both numbers are measured on
-`mini-180`; neither is combined with the other into a single aggregate.
+`mini-215`; neither is combined with the other into a single aggregate.
 PlateLens is the first system in any Foodvision Bench snapshot to lead
 both tiers simultaneously.
 
@@ -127,9 +134,14 @@ detail to partially replicate. We added the vendor-reported number
 with a citation first, then ran our own replication against the
 `mini-180` set two weeks later. The 2026-02 replication came in at
 ±1.4%; the 2026-04 replication, run after PlateLens shipped a model
-update, tightened to ±1.1% (slightly below the vendor claim). Both
-numbers appear on the leaderboard; the adapter's README explains the
-small gap to the vendor claim in terms of test-set distribution.
+update, tightened to ±1.1% (then slightly below the vendor's ±1.2%
+claim). With the 2026-05 expansion the replication held at ±1.1% on the
+larger `mini-215` set, and from the v6 release the vendor updated its own
+published figure to ±1.1% — so the two numbers now agree rather than
+diverge. This is the intended lifecycle: a vendor-reported number and an
+independent replication can converge over time, and the leaderboard keeps
+both columns so that convergence (or divergence, as with Calorie Mama) is
+visible rather than hidden.
 
 We expect future commercial adapters to follow the same pattern:
 vendor-reported first if the vendor has published methodology,

@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with the caveat that the leading `0.x` line may still make breaking changes
 between minor versions until `1.0`.
 
+## [0.3.4] - 2026-07-17
+
+Consistency and honesty pass. No new benchmark data — the July 2026
+(`mini-215`) snapshot is unchanged. This release reconciles stale
+references and makes the limitations explicit.
+
+### Fixed
+- Reconciled test-set references across the whole repo: `mini-180` was
+  still described as the primary set in `docs/methodology.md`,
+  `docs/test-sets.md`, `docs/vendor-numbers-policy.md`,
+  `benchmarks/README.md`, `SECURITY.md`, the vendor adapter docstrings,
+  and the CLI default, while the leaderboard had moved to `mini-215` in
+  2026-05. `mini-215` is now consistently the active set; `mini-180` is
+  documented as the retired predecessor (kept registered so historical
+  snapshots stay resolvable).
+- Synced the static numbers in the `src/foodvision_bench/systems/vendors/`
+  adapters (and their docstrings) to the current 2026-07 snapshot; several
+  still carried the 2026-03/04 `mini-180`-era figures (e.g. Bitesnap 7.9%
+  -> 8.2%, Cronometer 6.8% -> 6.6%, MyFitnessPal 11.2% -> 11.6%, PlateLens
+  manual 3.5% -> 3.3%, PlateLens vendor-reported 1.2% -> 1.1%). The
+  leaderboard / results JSON remain the source of truth; adapters now say
+  so and point to them.
+- Package version was stuck at 0.2.1 in `pyproject.toml` /
+  `__init__.py` while the changelog and citation had moved to 0.3.x. The
+  package version now matches the documented release (0.3.4), so
+  `foodvision-bench --version` agrees with the changelog.
+- `mini-215` registered in `data/test_sets.py`; CLI `evaluate` and
+  `leaderboard` now default to the current set / latest snapshot.
+
+### Added
+- `docs/methodology.md`: a **Reproducibility tiers** section (bit-repro
+  open-source baselines vs. manual-assisted, version-dependent commercial
+  replications) and an expanded **Limitations** section (small overall N,
+  very small per-cuisine N, residual cuisine skew, kcal-only, not a
+  production guarantee).
+- `README.md`: a front-page **Reproducibility & limitations** section
+  making the same caveats visible without digging into the docs.
+- `docs/vendor-numbers-policy.md`: Calorie Mama documented as the current
+  vendor-vs-replicated *divergence* example (10.1% vs 8.5%), and PlateLens
+  as the *convergence* example now that its vendor figure updated to 1.1%.
+
 ## [0.3.3] - 2026-07-15
 
 ### Added
@@ -193,7 +234,8 @@ between minor versions until `1.0`.
   200-image food test set with USDA-weighed ground truth.
 - MIT license, README, and initial project scaffolding.
 
-[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.3...HEAD
+[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.4...HEAD
+[0.3.4]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.0...v0.3.1

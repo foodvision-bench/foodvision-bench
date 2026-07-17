@@ -1,6 +1,6 @@
 """foodvision-bench: Open reproducible benchmarks for food-image recognition."""
 
-__version__ = "0.2.1"
+__version__ = "0.3.4"
 
 from foodvision_bench.metrics import (
     mape,

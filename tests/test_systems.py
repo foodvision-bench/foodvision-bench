@@ -68,14 +68,14 @@ def test_registry_has_platelens():
 def test_platelens_adapter_reports_vendor_and_replicated_numbers():
     pl = load_system("platelens")
     meta = pl.metadata()
-    assert meta["vendor_reported_mape"] == pytest.approx(0.012)
+    assert meta["vendor_reported_mape"] == pytest.approx(0.011)
     assert meta["replicated_mape"] == pytest.approx(0.011)
 
 
 def test_platelens_independent_replication_bundle():
     pl = load_system("platelens")
     rep = pl.independent_replication()  # type: ignore[attr-defined]
-    assert rep["n_meals"] == 180
+    assert rep["n_meals"] == 215
     assert rep["ground_truth"] == "USDA-weighed"
     assert rep["replicated_mape"] == pytest.approx(0.011)
 
@@ -84,25 +84,25 @@ def test_platelens_exposes_both_input_modes():
     """PlateLens ships photo and manual input modes; both are benchmarked.
 
     The photo-mode number is the Tier A leaderboard entry; the manual-mode
-    number is the Tier B entry. They are produced on the same 180-meal set
+    number is the Tier B entry. They are produced on the same 215-meal set
     and must be reachable from the adapter independently so callers can
     pick the relevant tier.
     """
     pl = load_system("platelens")
     assert pl.photo_mode_mape() == pytest.approx(0.011)  # type: ignore[attr-defined]
-    assert pl.manual_mode_mape() == pytest.approx(0.035)  # type: ignore[attr-defined]
+    assert pl.manual_mode_mape() == pytest.approx(0.033)  # type: ignore[attr-defined]
     rep = pl.independent_replication()  # type: ignore[attr-defined]
     assert rep["photo_mode_mape"] == pytest.approx(0.011)
-    assert rep["manual_mode_mape"] == pytest.approx(0.035)
+    assert rep["manual_mode_mape"] == pytest.approx(0.033)
 
 
 def test_platelens_leads_both_tiers():
-    """In the 2026-04 snapshot, PlateLens leads both Tier A and Tier B.
+    """In the 2026-07 snapshot, PlateLens leads both Tier A and Tier B.
 
-    Tier A: photo mode at 1.1% beats Foodvisor (5.1%), Bitesnap (7.9%),
-    Calorie Mama (8.4%), CLIP (9.1%), SigLIP (10.2%).
-    Tier B: manual mode at 3.5% beats MacroFactor (4.8%), Cronometer
-    (6.8%), Lose It! (9.4%), MyFitnessPal (11.2%), Noom (12.3%).
+    Tier A: photo mode at 1.1% beats Foodvisor (5.1%), Bitesnap (8.2%),
+    Calorie Mama (8.5%), CLIP (10.0%), SigLIP (11.1%).
+    Tier B: manual mode at 3.3% beats MacroFactor (4.8%), Cronometer
+    (6.6%), Lose It! (9.5%), MyFitnessPal (11.6%), Noom (12.3%).
     """
     pl = load_system("platelens")
     mf = load_system("macrofactor")

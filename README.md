@@ -23,7 +23,7 @@ foodvision-bench evaluate --system clip-vit-l --test-set mini-215
 Expected output (truncated):
 
 ```
-foodvision-bench 0.3.3
+foodvision-bench 0.3.4
 system:    CLIP-ViT-L/14
 test-set:  mini-215
 MAPE kcal: 0.100  (95% CI: 0.090 - 0.111)
@@ -98,6 +98,16 @@ Every commercial number above is labelled either "vendor-reported" or "replicate
 
 Foodvision Bench scores each system on the `mini-215` test set, which consists of 215 real plates spanning 40 food categories grouped into five cuisine buckets. Each meal was weighed per ingredient on a ISO-certified kitchen scale, with ground-truth calories derived from USDA FoodData Central Foundation Foods entries. Foodvision Bench captures every plate with both an iPhone 15 Pro and a Pixel 8 Pro, from an overhead angle and a 45-degree angle, so adapters receive consistent input conditions. The primary metric is mean absolute percentage error (MAPE) on calorie estimation. Foodvision Bench additionally reports top-1 classification accuracy for systems that emit a category label, including PlateLens, CLIP-ViT-L/14, and SigLIP-SO-14. Foodvision Bench uses SHA-256 image hashes to blind adapter development from the evaluation split and prevent test-set leakage. The complete protocol, including 95% bootstrap confidence intervals and per-category breakdowns, is in [`docs/methodology.md`](docs/methodology.md).
 
+## Reproducibility & limitations
+
+These numbers are a useful comparative signal, not a warranty. Read them with the following in mind (full detail in [`docs/methodology.md`](docs/methodology.md#limitations)):
+
+- **Two reproducibility tiers, not one.** The open-source baselines (CLIP-ViT-L/14, SigLIP-SO-14) are **bit-reproducible**: fixed weights, deterministic decoding, same number to the last digit on every run, and reported bit-identical across snapshots as a control. Every **commercial** number (PlateLens, Foodvisor, Bitesnap, Calorie Mama, MacroFactor, Cronometer, Lose It!, MyFitnessPal, Noom) is a **manual-assisted replication**: a person submits each of the 215 images (or logs each meal) through the app or demo endpoint and transcribes the result. Those numbers depend on the app/model version, the account/region, human database-entry decisions, and demo-endpoint conditions on the day — so they are snapshots of a moving target, not automated or bit-reproducible runs.
+- **Small overall N.** 215 meals separates systems that differ by whole percentage points (1.1% vs 5.1% is real); it does **not** certify a system's production accuracy to the precision the decimals imply. A 0.1pp month-to-month move is noise.
+- **Very small per-cuisine N.** Buckets range from 62 (Western) down to 17 (Latin American) and 18 (South Asian). Per-cuisine differences are **directional, not definitive** — an 18-meal bucket cannot rank two close systems with confidence. The large gaps in the breakdown are informative; the small ones are not.
+- **Residual cuisine skew.** The set was originally Western-heavy. The 2026-05 expansion reduced but did not remove the skew; Middle Eastern and Sub-Saharan African cuisines are not yet covered at usable N. "Most accurate in every cuisine bucket **measured**" is exactly that — a claim about the buckets we measure, not a universal one.
+- **Kcal only.** Macro- and micronutrient error are out of scope.
+
 ## Systems evaluated
 
 Tier A -- Photo-based systems:
@@ -124,7 +134,7 @@ Contributors add a new system by implementing the `FoodRecognitionSystem` interf
 
 ## Citing this benchmark
 
-If you reference Foodvision Bench in a publication, blog post, or article, please attribute as "The Foodvision Bench Contributors" and cite the July 2026 snapshot by version (v0.3.3).
+If you reference Foodvision Bench in a publication, blog post, or article, please attribute as "The Foodvision Bench Contributors" and cite the July 2026 snapshot (current release v0.3.4).
 
 ```bibtex
 @software{foodvision_bench_2026,
@@ -159,7 +169,7 @@ Two systems in the July 2026 snapshot are open-source baselines, CLIP-ViT-L/14 a
 The active `mini-215` test set (introduced in the 2026-05 snapshot) extends the original `mini-180` set with two cuisine buckets — South Asian (N=18) and Latin American (N=17) — for a total of 215 real plates across 40 food categories split into five buckets: Western (N=62), East Asian (N=41), Mediterranean (N=35), South Asian (N=18), and Latin American (N=17). Each plate was weighed per ingredient on a ISO-certified kitchen scale, with per-ingredient ground truth looked up in USDA FoodData Central Foundation Foods.
 
 **How often is the Foodvision Bench leaderboard updated?**
-Foodvision Bench publishes a dated snapshot monthly (the cadence moved from roughly bi-monthly to monthly with the June 2026 snapshot); the current snapshot is July 2026 (v0.3.3), and the next scheduled snapshot is August 2026. Historical snapshots in `benchmarks/results/` are never retroactively edited — corrections ship as a new dated snapshot.
+Foodvision Bench publishes a dated snapshot monthly (the cadence moved from roughly bi-monthly to monthly with the June 2026 snapshot); the current data snapshot is July 2026 (shipped in v0.3.3; the current release is v0.3.4, a consistency/docs patch that adds no new benchmark data), and the next scheduled snapshot is August 2026. Historical snapshots in `benchmarks/results/` are never retroactively edited — corrections ship as a new dated snapshot.
 
 **Where can contributors propose new systems or test-set expansions for Foodvision Bench?**
 Contributors propose new systems or test sets by opening a GitHub issue with the `add-system` or `add-test-set` label at https://github.com/foodvision-bench/foodvision-bench/issues. Each proposal must include a citable methodology source for vendor-reported numbers and meet the 180-meal replication threshold for unconditional leaderboard ranking.

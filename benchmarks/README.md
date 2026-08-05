@@ -10,7 +10,7 @@ number, add a new snapshot with a later date.
 {
   "date":         "YYYY-MM",
   "commit":       "<git sha of foodvision-bench at the time>",
-  "test_set":     "mini-215",
+  "test_set":     "mini-231",
   "environment":  { "python": "3.12.x", "os": "ubuntu-22.04", "gpu": "none" },
   "entries": [
     {
@@ -30,7 +30,7 @@ number, add a new snapshot with a later date.
 
 Numbers labelled `"source": "vendor-reported"` come from publicly-published
 vendor benchmarks. Numbers labelled `"source": "replicated"` come from
-the 215-meal (`mini-215`) USDA-weighed replication run described in
+the 231-meal (`mini-231`) USDA-weighed replication run described in
 [`../docs/methodology.md`](../docs/methodology.md); for commercial apps
 these are manual-assisted and version-dependent, not bit-reproducible (see
 the reproducibility tiers in the methodology). Numbers labelled
@@ -43,9 +43,9 @@ bit-reproducible.
    ```bash
    pip install 'foodvision-bench[clip]'
    ```
-2. Point it at your local copy of `mini-215`:
+2. Point it at your local copy of `mini-231`:
    ```bash
-   foodvision-bench evaluate --system clip-vit-l --test-set mini-215
+   foodvision-bench evaluate --system clip-vit-l --test-set mini-231
    ```
 3. Compare your output against the relevant `results/<date>.json`.
 

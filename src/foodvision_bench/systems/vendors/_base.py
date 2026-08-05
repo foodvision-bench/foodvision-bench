@@ -24,8 +24,8 @@ class VendorNumbers:
         Recorded verbatim; no editorial reinterpretation.
     replicated_mape:
         The MAPE we observed when running the vendor's public surface (app,
-        demo endpoint, or cached output) against our 215-meal USDA-weighed
-        replication set (`mini-215`). ``None`` if we have not yet run a
+        demo endpoint, or cached output) against our 231-meal USDA-weighed
+        replication set (`mini-231`). ``None`` if we have not yet run a
         replication.
     replicated_top_1:
         Top-1 category accuracy observed during replication.
@@ -39,7 +39,7 @@ class VendorNumbers:
     vendor_reported_mape: float | None = None
     replicated_mape: float | None = None
     replicated_top_1: float | None = None
-    replication_test_set: str = "mini-215 (USDA-weighed)"
+    replication_test_set: str = "mini-231 (USDA-weighed)"
     notes: str = ""
 
 

@@ -4,7 +4,25 @@ Each test set has a fixed name, a fixed size, and a documented source of
 ground truth. Adding a test set means adding a new `TestSet` entry in
 `src/foodvision_bench/data/test_sets.py` and a new section here.
 
-## `mini-215` (active primary set)
+## `mini-231` (active primary set)
+
+- **Size:** 231 images.
+- **Ground truth:** USDA FoodData Central, per-ingredient lookup, weighed
+  on an ISO-certified kitchen scale.
+- **Coverage:** 40 food categories across six cuisine buckets — Western
+  (62), East Asian (41), Mediterranean (35), South Asian (18), Latin
+  American (17), Middle Eastern (16). Extends `mini-215` with the Middle
+  Eastern bucket (added 2026-08, contributed from Amman and Beirut).
+  Per-cuisine N remains small; the newest bucket in particular should be
+  read as directional. A Sub-Saharan African bucket is collected but
+  unpublished at N<12.
+- **License:** CC-BY 4.0 for the images; ground-truth kcal derived from
+  the USDA public-domain database.
+
+This is the default test set and the set behind every number in the
+current (2026-08) leaderboard.
+
+## `mini-215` (predecessor, retired as primary)
 
 - **Size:** 215 images.
 - **Ground truth:** USDA FoodData Central, per-ingredient lookup, weighed
@@ -19,8 +37,9 @@ ground truth. Adding a test set means adding a new `TestSet` entry in
 - **License:** CC-BY 4.0 for the images; ground-truth kcal is derived
   from the USDA public-domain database.
 
-This is the default test set and the set behind every number in the
-current (2026-07) leaderboard.
+This was the primary set for the 2026-05 .. 2026-07 snapshots. It stays
+registered so those snapshots remain resolvable. New results should use
+`mini-231`.
 
 ## `mini-180` (predecessor, retired as primary)
 

@@ -39,7 +39,7 @@ release, and publish an advisory via GitHub Security Advisories.
 
 In scope:
 
-- Code in this repository: adapters, metrics, CLI, and the `mini-215`
+- Code in this repository: adapters, metrics, CLI, and the `mini-231`
   test-set loader.
 - Our CI configuration (`.github/workflows/`) and any secrets it
   consumes.

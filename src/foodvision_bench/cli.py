@@ -75,13 +75,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     ev = sub.add_parser("evaluate", help="Evaluate a system against a test set.")
     ev.add_argument("--system", required=True, help="System key, e.g. clip-vit-l")
-    ev.add_argument("--test-set", default="mini-215", help="Test set name.")
+    ev.add_argument("--test-set", default="mini-231", help="Test set name.")
     ev.set_defaults(func=_cmd_evaluate)
 
     lb = sub.add_parser("leaderboard", help="Render a leaderboard from a results file.")
     lb.add_argument(
         "--results",
-        default="benchmarks/results/2026-07.json",
+        default="benchmarks/results/2026-08.json",
         help="Path to a benchmarks/results/*.json file.",
     )
     lb.set_defaults(func=_cmd_leaderboard)

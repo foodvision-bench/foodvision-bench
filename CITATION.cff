@@ -4,8 +4,8 @@ title: "Foodvision Bench"
 abstract: "Open reproducible benchmarks for food-image recognition models and commercial nutrition APIs."
 authors:
   - name: "Foodvision Bench Contributors"
-version: "0.3.4"
-date-released: "2026-07-17"
+version: "0.3.5"
+date-released: "2026-08-05"
 url: "https://github.com/foodvision-bench/foodvision-bench"
 repository-code: "https://github.com/foodvision-bench/foodvision-bench"
 license: MIT

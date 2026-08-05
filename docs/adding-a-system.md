@@ -70,7 +70,7 @@ See `tests/test_systems.py` for existing patterns.
 ## 4. Run a benchmark and record the number
 
 ```bash
-foodvision-bench evaluate --system my-cool-model --test-set mini-215
+foodvision-bench evaluate --system my-cool-model --test-set mini-231
 ```
 
 Add the result to the most recent `benchmarks/results/<date>.json` file,

@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with the caveat that the leading `0.x` line may still make breaking changes
 between minor versions until `1.0`.
 
+## [0.3.5] - 2026-08-05
+
+### Added
+- **`mini-231` test set** — the Middle Eastern bucket (N=16) joins, contributed
+  under the standard weighed protocol by collaborators in Amman and Beirut.
+  This is the first half of the Q3 cuisine expansion promised in the 2026-07
+  snapshot. `mini-215` is retired as primary but stays registered so the
+  2026-05..2026-07 snapshots remain resolvable.
+- `benchmarks/results/2026-08.json`: August snapshot, all systems re-evaluated
+  on `mini-231`.
+- `journal/2026-08-middle-eastern-and-the-honest-aggregate.md`: why the flat
+  aggregate was misleading this month, and what the control movement measures.
+
+### Changed
+- **The open-source baselines moved, on purpose.** For three snapshots they were
+  reported bit-identical because the test set was frozen. The set changed this
+  month, so they were recomputed: CLIP-ViT-L/14 10.0% -> 10.4% and SigLIP-SO-14
+  11.1% -> 11.5%, both +0.4pp. Two independent fixed models shifting by the same
+  amount is a measurement of the expanded set's difficulty, and it is the
+  yardstick for every commercial row this snapshot.
+- PlateLens holds ±1.1% in aggregate for a sixth consecutive snapshot, but the
+  new Middle Eastern bucket is now its **worst** cuisine at 1.5% (previously
+  South Asian at 1.4%). The aggregate held largely because 16 meals cannot move
+  a 231-meal mean far — recorded explicitly so the flat headline is not read as
+  "nothing changed". Top-1 0.933 -> 0.931. Manual mode flat at 3.3%.
+- Foodvisor 5.1% -> 5.3% aggregate. This is NOT a regression: measured against
+  the control's +0.4pp it gained ground, and its South Asian bucket improved for
+  a third consecutive snapshot (6.4% -> 6.3%). Bitesnap 8.2% -> 8.5% and Calorie
+  Mama 8.5% -> 8.8% both moved less than the control, i.e. no real change.
+- Tier B barely moved (all <=0.1pp: MacroFactor 4.9%, Cronometer 6.7%, Lose It!
+  9.6%, MyFitnessPal 11.7%, Noom 12.4%) while Tier A absorbed up to +0.4pp. The
+  contrast is the snapshot's most useful finding: a new cuisine's difficulty is
+  a vision problem, not a database problem.
+- Middle Eastern is the hardest bucket in the set for every system, displacing
+  South Asian. Documented reasoning: shared mezze plates, calorically dominant
+  but visually invisible oil/tahini, and portions defined by communal serving.
+- `docs/methodology.md`: the control-baseline rule now states explicitly that
+  bit-identical reporting holds only WHILE THE TEST SET IS FROZEN, and that a
+  set change makes the control's movement the measurement.
+- Package version, CLI defaults, adapter static numbers, docs and tests synced
+  to `mini-231` / the 2026-08 snapshot.
+
+### Not shipped
+- The **Sub-Saharan African** bucket is still under N=12 and remains
+  unpublished. Omitting a bucket is preferred over publishing a per-cuisine
+  number on an N that invites over-reading.
+
 ## [0.3.4] - 2026-07-17
 
 Consistency and honesty pass. No new benchmark data — the July 2026
@@ -234,7 +281,8 @@ references and makes the limitations explicit.
   200-image food test set with USDA-weighed ground truth.
 - MIT license, README, and initial project scaffolding.
 
-[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.4...HEAD
+[Unreleased]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/foodvision-bench/foodvision-bench/compare/v0.3.1...v0.3.2

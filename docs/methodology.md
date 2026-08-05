@@ -25,10 +25,10 @@ number for brevity; consult the results JSON for the per-category view.
 
 ## Test set
 
-The active primary test set is **`mini-215`**: 215 real plates weighed on
+The active primary test set is **`mini-231`**: 231 real plates weighed on
 an ISO-certified kitchen scale, with ground-truth kcal derived from USDA
 FoodData Central lookups per weighed ingredient. It spans 40 food
-categories across five cuisine buckets:
+categories across six cuisine buckets:
 
 | Bucket         | N  |
 | -------------- | -- |
@@ -37,12 +37,20 @@ categories across five cuisine buckets:
 | Mediterranean  | 35 |
 | South Asian    | 18 |
 | Latin American | 17 |
+| Middle Eastern | 16 |
 
-`mini-215` was introduced in the **2026-05** snapshot; it extends the
-earlier **`mini-180`** set with the South Asian and Latin American
-buckets. `mini-180` is retired as the primary set but stays registered so
-the historical snapshots that used it (2025-11 through 2026-04) remain
-resolvable. Any snapshot's own JSON records which test set produced it.
+`mini-231` was introduced in the **2026-08** snapshot, adding the Middle
+Eastern bucket to `mini-215` (itself introduced in **2026-05**, extending
+the earlier **`mini-180`** with the South Asian and Latin American
+buckets). Retired sets stay registered so historical snapshots remain
+resolvable: `mini-180` covered 2025-11..2026-04, `mini-215` covered
+2026-05..2026-07. Any snapshot's own JSON records which test set produced
+it — **never compare an aggregate across a set change without accounting
+for the set's difficulty** (see the control-baseline note below).
+
+A **Sub-Saharan African** bucket is collected but unpublished at N<12.
+We would rather omit a bucket than publish a per-cuisine number on an N
+that invites over-reading.
 
 The set is deliberately small so that a full replication run — which is
 partly manual, see below — can be completed by hand. That is a real
@@ -56,7 +64,7 @@ in `docs/test-sets.md`.
 
 ```bash
 pip install 'foodvision-bench[clip]'
-foodvision-bench evaluate --system clip-vit-l --test-set mini-215
+foodvision-bench evaluate --system clip-vit-l --test-set mini-231
 ```
 
 ## Reproducibility tiers — read this before comparing numbers
@@ -70,15 +78,20 @@ to over-read the results:
    weights, a fixed 40-label prompt, and deterministic decoding on the
    fixed test set. Anyone who installs the package and runs the CLI gets
    the same number to the last digit. Because of this, we report them
-   **bit-identical across snapshots** and use them as a *control*: if a
-   snapshot's open-source numbers ever moved, it would mean the harness
-   or the test set changed, not the systems.
+   **bit-identical across snapshots WHILE THE TEST SET IS FROZEN**, and use
+   them as a *control*: if their numbers move while the set is unchanged,
+   it means the harness changed, not the systems.
+   When the test set DOES change, the control is EXPECTED to move — and
+   that movement is itself the measurement. The 2026-08 mini-215 ->
+   mini-231 expansion shifted both fixed baselines by +0.4pp, which became
+   the yardstick for that snapshot: a commercial system that moved by less
+   than +0.4pp effectively improved, even if its aggregate rose.
 
 2. **Manual-assisted replication (every commercial app: PlateLens,
    Foodvisor, Bitesnap, Calorie Mama, MacroFactor, Cronometer, Lose It!,
    MyFitnessPal, Noom).** These are **not** automated. We do not have the
    vendors' model weights or a metadata-complete API. A person submits
-   each of the 215 images (or logs each meal) through the app or demo
+   each of the 231 images (or logs each meal) through the app or demo
    endpoint and transcribes the kcal the app reports. This means the
    number depends on:
    - the **app/model version** on the day of the run (vendors ship silent
@@ -127,7 +140,7 @@ Why split:
 3. *Complete coverage.* An app that supports both input modes is
    evaluated in both tiers. PlateLens is the canonical example: its
    photo pipeline is benchmarked in Tier A and its manual-entry workflow
-   in Tier B. The two measurements are produced on the same 215-meal set
+   in Tier B. The two measurements are produced on the same 231-meal set
    so the gap between them is interpretable as the cost of logging by
    hand instead of by camera.
 
@@ -139,7 +152,7 @@ when they are the only published number the vendor has.
 
 - Vendor-reported numbers carry no measurement error from our side. They
   are what the vendor chose to publish.
-- Replicated numbers carry the measurement error of a 215-meal set.
+- Replicated numbers carry the measurement error of a 231-meal set.
   Bootstrap 95% CIs are included in the per-run JSON under
   `mape_kcal_ci95` where computed. On a set this size the overall CI is
   already non-trivial; the **per-cuisine** CIs are wide (see below).
@@ -152,13 +165,14 @@ when they are the only published number the vendor has.
 These are load-bearing. The leaderboard is a small, partly-manual
 benchmark, and the numbers should be read accordingly.
 
-- **Small overall N.** 215 meals is enough to separate systems that differ
+- **Small overall N.** 231 meals is enough to separate systems that differ
   by whole percentage points (e.g. 1.1% vs 5.1%), but it is *not* enough
   to certify a system's "true" accuracy in production, across the full
   diversity of real meals, to the precision the decimals suggest. Read a
   0.1pp month-to-month move as noise, not signal.
 - **Very small per-cuisine N.** The per-cuisine buckets range from 62
-  (Western) down to **17 (Latin American)** and **18 (South Asian)**.
+  (Western) down to **16 (Middle Eastern)**, **17 (Latin American)** and
+  **18 (South Asian)**.
   Per-bucket differences should be read as **directional, not
   definitive** — an 18-meal bucket cannot support a confident ranking
   claim between two close systems. We publish the breakdown because the
@@ -166,9 +180,8 @@ benchmark, and the numbers should be read accordingly.
   precise.
 - **Residual cuisine skew.** The set was originally Western-heavy. The
   2026-05 expansion (South Asian, Latin American) reduced but did not
-  eliminate the skew; Western is still the largest bucket, and Middle
-  Eastern and Sub-Saharan African cuisines are not yet represented at
-  usable N. "Most accurate across every cuisine bucket measured" means
+  eliminate the skew; Western is still the largest bucket; Middle Eastern joined at N=16 in
+  2026-08 and Sub-Saharan African is still not represented at usable N. "Most accurate across every cuisine bucket measured" means
   *measured* — it is not a claim about cuisines we do not yet cover.
 - **Commercial numbers are manual-assisted and version-dependent.** See
   the reproducibility tiers above. They can and do move when a vendor

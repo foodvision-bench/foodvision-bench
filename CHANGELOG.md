@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with the caveat that the leading `0.x` line may still make breaking changes
 between minor versions until `1.0`.
 
+## [0.3.6] - 2026-09-02
+
+### Added
+- `benchmarks/results/2026-09.json`: September snapshot. `mini-231` held bit-for-bit
+  from August; all systems re-evaluated on the unchanged set.
+- `journal/2026-09-a-quiet-month-is-a-result.md`: why an uneventful snapshot is
+  reported as an outcome rather than padded into a finding, and what the
+  bit-identical control baselines confirm.
+
+### Changed
+- `benchmarks/leaderboard.md` regenerated for 2026-09.
+- Foodvisor improves for a fourth consecutive snapshot (5.3% -> 5.1% aggregate),
+  again concentrated in the South Asian bucket (6.3% -> 6.1%).
+- PlateLens (manual mode) 3.3% -> 3.2% after a database refresh.
+- Minor drift within the noise floor on Bitesnap, Calorie Mama, MacroFactor,
+  Lose It! and MyFitnessPal.
+
+### Unchanged (deliberately recorded)
+- `mini-231` test set — no cuisines added, nothing re-scored.
+- Both open-source control baselines are **bit-identical** to 2026-08
+  (CLIP-ViT-L/14 10.4%, SigLIP-SO-14 11.5%), as they must be on an unchanged
+  set with deterministic decoding. Last snapshot they moved because the set had
+  expanded; the pair of results is the method demonstrating itself.
+- PlateLens holds ±1.1% for a seventh consecutive snapshot.
+- The Middle Eastern bucket repeats at 1.5% for PlateLens in its second month.
+
+### Known gaps
+- Sub-Saharan African bucket remains under N=12 and is **not** published. It was
+  targeted for Q3, Q3 ends this month, and it will not make it. Publishing a
+  per-cuisine figure on that sample would invite the over-reading the breakdown
+  exists to prevent.
+
 ## [0.3.5] - 2026-08-05
 
 ### Added

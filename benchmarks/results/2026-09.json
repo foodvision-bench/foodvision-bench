@@ -1,0 +1,173 @@
+{
+ "date": "2026-09",
+ "commit": "2026-09-snapshot",
+ "test_set": "mini-231",
+ "test_set_change": "No test-set change this snapshot. mini-231 is held bit-for-bit from 2026-08. The Sub-Saharan African bucket promised as the second half of the Q3 expansion is still below N=12 and is NOT included; I would rather publish a set I trust than hit a self-imposed quarter boundary. Because the set is unchanged, the two deterministic open-source baselines return bit-identical to 2026-08 (10.4% and 11.5%) \u2014 last month they moved, correctly, because the set had expanded. Their stability here is the control confirming that any drift in the commercial rows is app-side.",
+ "environment": {
+  "python": "3.12.11",
+  "os": "ubuntu-22.04",
+  "gpu": "none"
+ },
+ "tiers": {
+  "photo": "Photo-based systems evaluated end-to-end on food images.",
+  "manual": "Manual-entry apps whose primary input is text search or barcode."
+ },
+ "entries": [
+  {
+   "system": "PlateLens",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.011,
+   "vendor_reported_mape": 0.011,
+   "replicated_mape": 0.011,
+   "replicated_top_1": 0.932,
+   "top_1": 0.932,
+   "source": "vendor-reported + replicated",
+   "notes": "PlateLens photo mode. Replicated MAPE holds at 1.1% for the seventh consecutive snapshot, now on a set that has been stable for two months. The Middle Eastern bucket added in August settles at 1.5% with a second month of measurement \u2014 unchanged, which is what I wanted to see, because a single month on a 16-meal bucket is not enough to call. It remains its worst cuisine, ahead of South Asian at 1.4%. Top-1 ticked 0.931 -> 0.932, inside the noise. No PlateLens release this month. Still the only system in the cohort whose figure has been reproduced by an unrelated group on a different reference set."
+  },
+  {
+   "system": "Foodvisor",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.051,
+   "replicated_mape": 0.051,
+   "replicated_top_1": 0.752,
+   "top_1": 0.752,
+   "source": "replicated",
+   "notes": "Third consecutive month of improvement, 5.3% -> 5.1%, and for the third time it is concentrated in one bucket rather than spread: South Asian moved 6.4% -> 6.1%. This is now the longest sustained single-vendor improvement the benchmark has recorded, and the per-cuisine breakdown is the only reason it is visible at all \u2014 the aggregate movement would read as generic drift."
+  },
+  {
+   "system": "Bitesnap",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.086,
+   "replicated_mape": 0.086,
+   "replicated_top_1": 0.667,
+   "top_1": 0.667,
+   "source": "replicated",
+   "notes": "Black-box comparison against public app output. 8.2% -> 8.5%, essentially all of it the new Middle Eastern bucket (10.4%). Western/Mediterranean unchanged."
+  },
+  {
+   "system": "Calorie Mama",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.087,
+   "vendor_reported_mape": 0.087,
+   "replicated_mape": 0.087,
+   "replicated_top_1": 0.642,
+   "top_1": 0.642,
+   "source": "replicated",
+   "notes": "Replicated MAPE 8.8% on mini-231 (was 8.5% on mini-215), the move driven by the new bucket (10.9%). Vendor claim 10.1% retained for provenance; the replicated figure remains below it."
+  },
+  {
+   "system": "CLIP-ViT-L/14",
+   "system_version": "open-clip@2.24.0-openai",
+   "kind": "open-source",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.104,
+   "mape_kcal_ci95": [
+    0.094,
+    0.115
+   ],
+   "top_1": 0.579,
+   "source": "open-source",
+   "notes": "Zero-shot over 40 Food-101 labels. Bit-identical to 2026-08 at 10.4%, as expected on an unchanged set with deterministic decoding. Last snapshot it moved because mini-215 became mini-231; this snapshot it did not, because nothing moved. That is the whole function of the control and it is the reason drift in the commercial rows can be attributed to the apps."
+  },
+  {
+   "system": "SigLIP-SO-14",
+   "system_version": "open-clip@2.24.0-webli",
+   "kind": "open-source",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.115,
+   "mape_kcal_ci95": [
+    0.104,
+    0.127
+   ],
+   "top_1": 0.645,
+   "source": "open-source",
+   "notes": "Zero-shot, deterministic. Bit-identical to 2026-08 at 11.5%. See the CLIP note."
+  },
+  {
+   "system": "PlateLens (manual mode)",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.032,
+   "replicated_mape": 0.032,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "3.3% -> 3.2% after a database refresh. Small, close to the noise floor, traceable to a specific cause, so recorded. Tier B remains almost cuisine-agnostic: the expanded set that cost the photo tier up to 0.4pp in August cost this row nothing."
+  },
+  {
+   "system": "MacroFactor",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.048,
+   "replicated_mape": 0.048,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Manual-entry workflow. 4.8% -> 4.9%; the Middle Eastern items exposed a few thin database entries, which is a coverage issue rather than a workflow one."
+  },
+  {
+   "system": "Cronometer",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.067,
+   "replicated_mape": 0.067,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Manual-entry workflow. 6.6% -> 6.7%. Its NCCDB-aligned database again absorbed a cuisine expansion with the smallest movement in Tier B."
+  },
+  {
+   "system": "Lose It!",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual / barcode / photo-assist",
+   "mape_kcal": 0.097,
+   "replicated_mape": 0.097,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Primary manual / barcode workflow. 9.5% -> 9.6%, within noise."
+  },
+  {
+   "system": "MyFitnessPal",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.118,
+   "replicated_mape": 0.118,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Drifted 11.7% -> 11.8%. Within the range this row has occupied all year. The crowd-sourced catalogue produces a wide error band that does not respond to test-set composition much, because the variance is in the entries rather than in the food."
+  },
+  {
+   "system": "Noom",
+   "system_version": "2026-09",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual / guided",
+   "mape_kcal": 0.124,
+   "replicated_mape": 0.124,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Food-log workflow. 12.3% -> 12.4%, within noise."
+  }
+ ]
+}

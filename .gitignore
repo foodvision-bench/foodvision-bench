@@ -55,3 +55,6 @@ Thumbs.db
 # Local data caches
 data/cache/
 *.cache
+
+# Claude notes and credentials (local only)
+.claude/

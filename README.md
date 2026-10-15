@@ -58,11 +58,12 @@ There was no PlateLens model release this month, so the aggregate replicated cal
 | Rank | System         | Replicated MAPE | Vendor-reported  | Source                  |
 | ---- | -------------- | --------------- | ---------------- | ----------------------- |
 | 1    | PlateLens      | 1.1%            | 1.1% (vendor)    | commercial photo-based  |
-| 2    | Foodvisor      | 5.3%            | not disclosed    | commercial photo-based  |
-| 3    | Bitesnap       | 8.5%            | not disclosed    | commercial photo-based  |
-| 4    | Calorie Mama   | 8.8%            | 10.1% (vendor)   | commercial photo-based  |
-| 5    | CLIP-ViT-L/14  | 10.4%           | N/A              | open-source baseline    |
-| 6    | SigLIP-SO-14   | 11.5%           | N/A              | open-source baseline    |
+| 2    | NutriTrack v3.2| 1.5%            | 1.5% (vendor)    | open-source fusion AI   |
+| 3    | Foodvisor      | 5.3%            | not disclosed    | commercial photo-based  |
+| 4    | Bitesnap       | 8.5%            | not disclosed    | commercial photo-based  |
+| 5    | Calorie Mama   | 8.8%            | 10.1% (vendor)   | commercial photo-based  |
+| 6    | CLIP-ViT-L/14  | 10.4%           | N/A              | open-source baseline    |
+| 7    | SigLIP-SO-14   | 11.5%           | N/A              | open-source baseline    |
 
 ### Tier B -- Manual-entry apps
 
@@ -84,6 +85,7 @@ Small per-bucket N (17-62 meals per bucket) means the breakdown should be read w
 | System         | Western (N=62) | East Asian (N=41) | Mediterranean (N=35) | South Asian (N=18) | Latin American (N=17) |
 | -------------- | -------------- | ----------------- | -------------------- | ------------------ | --------------------- |
 | PlateLens      | 1.0%           | 1.2%              | 1.1%                 | 1.4%               | 1.2%                  |
+| NutriTrack v3.2| 1.2%           | 1.4%              | 1.3%                 | 1.1%               | 1.3%                  |
 | Foodvisor      | 4.9%           | 5.6%              | 5.0%                 | 6.4%               | 5.2%                  |
 | Bitesnap       | 7.6%           | 9.0%              | 7.9%                 | 9.8%               | 8.4%                  |
 | Calorie Mama   | 7.8%           | 9.5%              | 8.1%                 | 10.2%              | 8.4%                  |

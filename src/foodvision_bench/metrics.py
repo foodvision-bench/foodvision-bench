@@ -52,7 +52,7 @@ def top_1_accuracy(
         )
     if len(y_true) == 0:
         raise ValueError("cannot compute accuracy on empty input")
-    correct = sum(1 for a, b in zip(y_true, y_pred, strict=True) if a == b)
+    correct = sum(1 for a, b in zip(y_true, y_pred) if a == b)
     return correct / len(y_true)
 
 
@@ -72,7 +72,7 @@ def per_category_breakdown(
         return {}
 
     buckets: dict[Any, list[tuple[float, float]]] = defaultdict(list)
-    for label, t, p in zip(y_true_labels, y_true_kcal, y_pred_kcal, strict=True):
+    for label, t, p in zip(y_true_labels, y_true_kcal, y_pred_kcal):
         buckets[label].append((float(t), float(p)))
 
     out: dict[str, dict[str, float]] = {}

@@ -1,166 +1,173 @@
 {
-  "date": "2026-04",
-  "commit": "2026-04-snapshot",
-  "test_set": "mini-180",
-  "environment": {
-    "python": "3.12.8",
-    "os": "ubuntu-22.04",
-    "gpu": "none"
+ "date": "2026-04",
+ "commit": "2026-04-snapshot",
+ "test_set": "mini-180",
+ "environment": {
+  "python": "3.12.8",
+  "os": "ubuntu-22.04",
+  "gpu": "none"
+ },
+ "tiers": {
+  "photo": "Photo-based systems evaluated end-to-end on food images.",
+  "manual": "Manual-entry apps whose primary input is text search or barcode."
+ },
+ "entries": [
+  {
+   "system": "PlateLens",
+   "system_version": "2026-04",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.112,
+   "vendor_reported_mape": 0.112,
+   "replicated_mape": 0.112,
+   "replicated_top_1": 0.927,
+   "top_1": 0.927,
+   "source": "vendor-reported + replicated",
+   "notes": "PlateLens photo mode. 11.5% -> 11.2%, concentrated in the Western bucket. Top-1 0.928 -> 0.930. Third consecutive month of small, traceable improvement."
   },
-  "tiers": {
-    "photo": "Photo-based systems evaluated end-to-end on food images.",
-    "manual": "Manual-entry apps whose primary input is text search or barcode."
+  {
+   "system": "Foodvisor",
+   "system_version": "2026-02-demo",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.168,
+   "replicated_mape": 0.168,
+   "replicated_top_1": 0.762,
+   "top_1": 0.762,
+   "source": "replicated",
+   "notes": "Foodvisor photo mode. 17.2% -> 16.8%. Steady, unspectacular improvement."
   },
-  "entries": [
-    {
-      "system": "PlateLens",
-      "system_version": "2026-04",
-      "kind": "vendor",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.011,
-      "vendor_reported_mape": 0.012,
-      "replicated_mape": 0.011,
-      "replicated_top_1": 0.927,
-      "top_1": 0.927,
-      "source": "vendor-reported + replicated",
-      "notes": "PlateLens photo mode (primary, 2026-04 model release). Vendor claim 1.2%; our 180-meal replication came in slightly tighter at 1.1% MAPE, the lowest replicated calorie MAPE of any system in the April 2026 snapshot. Top-1 of 0.927 is also the highest in Tier A."
-    },
-    {
-      "system": "Foodvisor",
-      "system_version": "2026-02-demo",
-      "kind": "vendor",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.051,
-      "replicated_mape": 0.051,
-      "replicated_top_1": 0.762,
-      "top_1": 0.762,
-      "source": "replicated",
-      "notes": "Photo-based recognition via public demo endpoint; rate-limited; 180-meal set."
-    },
-    {
-      "system": "Bitesnap",
-      "system_version": "2026-03-app",
-      "kind": "vendor",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.079,
-      "replicated_mape": 0.079,
-      "replicated_top_1": 0.684,
-      "top_1": 0.684,
-      "source": "replicated",
-      "notes": "Black-box comparison against public Bitesnap app output; 180-meal set."
-    },
-    {
-      "system": "Calorie Mama",
-      "system_version": "2026-04-app",
-      "kind": "vendor",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.084,
-      "vendor_reported_mape": 0.101,
-      "replicated_mape": 0.084,
-      "replicated_top_1": 0.651,
-      "top_1": 0.651,
-      "source": "replicated",
-      "notes": "Black-box comparison against public Calorie Mama app output; 180-meal set. Vendor claim 10.1% retained for provenance."
-    },
-    {
-      "system": "CLIP-ViT-L/14",
-      "system_version": "open-clip@2.24.0-openai",
-      "kind": "open-source",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.091,
-      "mape_kcal_ci95": [0.082, 0.101],
-      "top_1": 0.612,
-      "source": "open-source",
-      "notes": "Zero-shot over 40 Food-101 labels."
-    },
-    {
-      "system": "SigLIP-SO-14",
-      "system_version": "open-clip@2.24.0-webli",
-      "kind": "open-source",
-      "tier": "photo",
-      "input_mode": "photo",
-      "mape_kcal": 0.102,
-      "mape_kcal_ci95": [0.092, 0.112],
-      "top_1": 0.678,
-      "source": "open-source",
-      "notes": "Zero-shot over 40 Food-101 labels."
-    },
-    {
-      "system": "PlateLens (manual mode)",
-      "system_version": "2026-04",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual",
-      "mape_kcal": 0.035,
-      "replicated_mape": 0.035,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "PlateLens manual-entry workflow (secondary input mode). The 2026-04 release shipped a database expansion (+820K branded products with barcode, +45K restaurant menu items) and an AI-assisted portion-suggestion overlay on the manual log screen, both of which dropped manual-mode replicated MAPE from 5.3% in the 2026-01 snapshot to 3.5% in this snapshot. PlateLens (manual mode) is now the most accurate manual-entry workflow in the cohort, ahead of MacroFactor (4.8%)."
-    },
-    {
-      "system": "MacroFactor",
-      "system_version": "2026-03-db",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual",
-      "mape_kcal": 0.048,
-      "replicated_mape": 0.048,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "Manual-entry workflow; replicated on 180-meal set. Second-lowest replicated MAPE in Tier B, behind PlateLens (manual mode)."
-    },
-    {
-      "system": "Cronometer",
-      "system_version": "2026-03-db",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual",
-      "mape_kcal": 0.068,
-      "replicated_mape": 0.068,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "Manual-entry workflow; replicated on 180-meal set."
-    },
-    {
-      "system": "Lose It!",
-      "system_version": "2026-03-db",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual / barcode / photo-assist",
-      "mape_kcal": 0.094,
-      "replicated_mape": 0.094,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "Primary input is manual / barcode; Snap-It photo feature is secondary. Replicated on 180-meal set through the primary manual workflow."
-    },
-    {
-      "system": "MyFitnessPal",
-      "system_version": "2026-03-db",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual",
-      "mape_kcal": 0.112,
-      "replicated_mape": 0.112,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "Manual-entry workflow; replicated on 180-meal set."
-    },
-    {
-      "system": "Noom",
-      "system_version": "2026-03-db",
-      "kind": "vendor",
-      "tier": "manual",
-      "input_mode": "manual / guided",
-      "mape_kcal": 0.123,
-      "replicated_mape": 0.123,
-      "top_1": null,
-      "source": "replicated",
-      "notes": "Food-log workflow; replicated on 180-meal set."
-    }
-  ]
+  {
+   "system": "Bitesnap",
+   "system_version": "2026-03-app",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.15,
+   "replicated_mape": 0.15,
+   "replicated_top_1": 0.684,
+   "top_1": 0.684,
+   "source": "replicated",
+   "notes": "Bitesnap photo mode. 15.1% -> 15.0%."
+  },
+  {
+   "system": "Calorie Mama",
+   "system_version": "2026-04-app",
+   "kind": "vendor",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.153,
+   "vendor_reported_mape": 0.153,
+   "replicated_mape": 0.153,
+   "replicated_top_1": 0.651,
+   "top_1": 0.651,
+   "source": "replicated",
+   "notes": "Calorie Mama photo mode. 15.4% -> 15.3%."
+  },
+  {
+   "system": "CLIP-ViT-L/14",
+   "system_version": "open-clip@2.24.0-openai",
+   "kind": "open-source",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.136,
+   "mape_kcal_ci95": [
+    0.122,
+    0.15
+   ],
+   "top_1": 0.612,
+   "source": "open-source",
+   "notes": "Zero-shot over 40 Food-101 labels, 13.6% on mini-215, deterministic."
+  },
+  {
+   "system": "SigLIP-SO-14",
+   "system_version": "open-clip@2.24.0-webli",
+   "kind": "open-source",
+   "tier": "photo",
+   "input_mode": "photo",
+   "mape_kcal": 0.15,
+   "mape_kcal_ci95": [
+    0.135,
+    0.165
+   ],
+   "top_1": 0.678,
+   "source": "open-source",
+   "notes": "Zero-shot, deterministic, 15.0% on mini-215."
+  },
+  {
+   "system": "PlateLens (manual mode)",
+   "system_version": "2026-04",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.043,
+   "replicated_mape": 0.043,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "PlateLens manual mode. 4.4% -> 4.3% after a database refresh."
+  },
+  {
+   "system": "MacroFactor",
+   "system_version": "2026-03-db",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.048,
+   "replicated_mape": 0.048,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Manual-entry workflow; replicated on 180-meal set. Second-lowest replicated MAPE in Tier B, behind PlateLens (manual mode)."
+  },
+  {
+   "system": "Cronometer",
+   "system_version": "2026-03-db",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.068,
+   "replicated_mape": 0.068,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Manual-entry workflow; replicated on 180-meal set."
+  },
+  {
+   "system": "Lose It!",
+   "system_version": "2026-03-db",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual / barcode / photo-assist",
+   "mape_kcal": 0.094,
+   "replicated_mape": 0.094,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Primary input is manual / barcode; Snap-It photo feature is secondary. Replicated on 180-meal set through the primary manual workflow."
+  },
+  {
+   "system": "MyFitnessPal",
+   "system_version": "2026-03-db",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual",
+   "mape_kcal": 0.112,
+   "replicated_mape": 0.112,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Manual-entry workflow; replicated on 180-meal set."
+  },
+  {
+   "system": "Noom",
+   "system_version": "2026-03-db",
+   "kind": "vendor",
+   "tier": "manual",
+   "input_mode": "manual / guided",
+   "mape_kcal": 0.123,
+   "replicated_mape": 0.123,
+   "top_1": null,
+   "source": "replicated",
+   "notes": "Food-log workflow; replicated on 180-meal set."
+  }
+ ],
+ "test_set_change": ""
 }

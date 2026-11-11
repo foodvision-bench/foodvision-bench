@@ -166,7 +166,7 @@ These are load-bearing. The leaderboard is a small, partly-manual
 benchmark, and the numbers should be read accordingly.
 
 - **Small overall N.** 231 meals is enough to separate systems that differ
-  by whole percentage points (e.g. 1.1% vs 5.1%), but it is *not* enough
+  by whole percentage points (e.g. 10.4% vs 16.0%), but it is *not* enough
   to certify a system's "true" accuracy in production, across the full
   diversity of real meals, to the precision the decimals suggest. Read a
   0.1pp month-to-month move as noise, not signal.

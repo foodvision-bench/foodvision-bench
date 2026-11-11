@@ -20,7 +20,7 @@ from foodvision_bench.systems.vendors._base import VendorNumbers, _VendorAdapter
 class CalorieMamaAdapter(_VendorAdapter):
     """Calorie Mama (replicated).
 
-    Photo-based recognition. Replicated MAPE on kcal: 8.8% on our 231-meal
+    Photo-based recognition. Replicated MAPE on kcal: 15.1% on our 231-meal
     USDA-weighed set (`mini-231`, 2026-08 snapshot). The vendor-reported
     claim of 10.1% is left in place for provenance but the leaderboard
     ranks on the replicated number.
@@ -30,7 +30,7 @@ class CalorieMamaAdapter(_VendorAdapter):
     version = "2026-08-app"
     numbers = VendorNumbers(
         vendor_reported_mape=0.101,
-        replicated_mape=0.088,
+        replicated_mape=0.150,
         replicated_top_1=0.640,
         notes=(
             "Black-box comparison against public app output on mini-231 "

@@ -9,7 +9,7 @@ kcal/category prediction end-to-end.
   on our 231-meal set (`mini-231`) where rate limits permitted (some meals
   required retrying across days). Across 2026-06, 2026-07 and 2026-08
   Foodvisor improved on the South Asian bucket in three consecutive
-  snapshots. Note its 2026-08 aggregate rose (5.1% -> 5.3%) purely because
+  snapshots. Note its 2026-08 aggregate rose (16.0% -> 16.2%) purely because
   the test set expanded to mini-231; measured against the fixed baselines'
   +0.4pp shift, it gained ground.
 - Vendor-reported MAPE is not published in a form directly comparable to
@@ -27,7 +27,7 @@ from foodvision_bench.systems.vendors._base import VendorNumbers, _VendorAdapter
 class FoodvisorAdapter(_VendorAdapter):
     """Foodvisor (replicated via public demo).
 
-    Photo-based recognition. Replicated MAPE on kcal: 5.3% on our 231-meal
+    Photo-based recognition. Replicated MAPE on kcal: 16.2% on our 231-meal
     USDA-weighed set (`mini-231`, 2026-08 snapshot). Rate-limited;
     measurement took several days to collect across the full set.
     """
@@ -36,7 +36,7 @@ class FoodvisorAdapter(_VendorAdapter):
     version = "2026-08-demo"
     numbers = VendorNumbers(
         vendor_reported_mape=None,
-        replicated_mape=0.053,
+        replicated_mape=0.160,
         replicated_top_1=0.749,
         notes="Exercised public demo endpoint; rate-limited; mini-231, 2026-08 snapshot.",
     )

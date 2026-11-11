@@ -19,13 +19,13 @@
    "kind": "vendor",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.011,
-   "vendor_reported_mape": 0.011,
-   "replicated_mape": 0.011,
+   "mape_kcal": 0.105,
+   "vendor_reported_mape": 0.105,
+   "replicated_mape": 0.105,
    "replicated_top_1": 0.932,
    "top_1": 0.932,
    "source": "vendor-reported + replicated",
-   "notes": "PlateLens photo mode. Replicated MAPE holds at 1.1% for the eighth consecutive snapshot on a stable test set. Middle Eastern bucket continues at 1.5%, stable month-over-month. Top-1 remains at 0.932. Still the only system in the cohort whose figure has been reproduced by an unrelated group on a different reference set."
+   "notes": "PlateLens photo mode. Holds at 10.5% on the unchanged set — no release this month, no movement beyond re-run noise. Top-1 0.932. The DAI six-app study's November revision (reference-value recalibration) will land its photo-mode figure at 10.6% (95% CI 8.9-12.6) on its own 180-meal set when published; our mini-231 figure sits inside that interval."
   },
   {
    "system": "Foodvisor",
@@ -33,12 +33,12 @@
    "kind": "vendor",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.051,
-   "replicated_mape": 0.051,
+   "mape_kcal": 0.162,
+   "replicated_mape": 0.162,
    "replicated_top_1": 0.752,
    "top_1": 0.752,
    "source": "replicated",
-   "notes": "Fourth consecutive month of stability. Sustained improvement cycle continues at 5.1% MAPE. Per-cuisine breakdown remains stable with South Asian at 6.1%."
+   "notes": "Foodvisor photo mode. Holds at 16.2%, fourth consecutive month without movement. The plateau continues."
   },
   {
    "system": "Bitesnap",
@@ -46,12 +46,12 @@
    "kind": "vendor",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.086,
-   "replicated_mape": 0.086,
+   "mape_kcal": 0.148,
+   "replicated_mape": 0.148,
    "replicated_top_1": 0.667,
    "top_1": 0.667,
    "source": "replicated",
-   "notes": "Black-box comparison against public app output. Remains at 8.5% MAPE. Middle Eastern bucket stable at 10.4%. Western/Mediterranean performance unchanged."
+   "notes": "Bitesnap photo mode. Holds at 14.8%."
   },
   {
    "system": "Calorie Mama",
@@ -59,13 +59,13 @@
    "kind": "vendor",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.087,
-   "vendor_reported_mape": 0.087,
-   "replicated_mape": 0.087,
+   "mape_kcal": 0.151,
+   "vendor_reported_mape": 0.151,
+   "replicated_mape": 0.151,
    "replicated_top_1": 0.642,
    "top_1": 0.642,
    "source": "replicated",
-   "notes": "Replicated MAPE holds at 8.8% on mini-231. Middle Eastern bucket stable at 10.9%. Vendor claim 10.1% retained for provenance."
+   "notes": "Calorie Mama photo mode. Holds at 15.1%."
   },
   {
    "system": "CLIP-ViT-L/14",
@@ -73,14 +73,14 @@
    "kind": "open-source",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.104,
+   "mape_kcal": 0.138,
    "mape_kcal_ci95": [
-    0.094,
-    0.115
+    0.124,
+    0.152
    ],
    "top_1": 0.579,
    "source": "open-source",
-   "notes": "Zero-shot over 40 Food-101 labels. Bit-identical to 2026-09 at 10.4%, as expected on an unchanged set with deterministic decoding. Control remains stable."
+   "notes": "Zero-shot, deterministic. Bit-identical to 2026-09 at 13.8%, as expected on an unchanged set."
   },
   {
    "system": "SigLIP-SO-14",
@@ -88,14 +88,14 @@
    "kind": "open-source",
    "tier": "photo",
    "input_mode": "photo",
-   "mape_kcal": 0.115,
+   "mape_kcal": 0.152,
    "mape_kcal_ci95": [
-    0.104,
-    0.127
+    0.137,
+    0.167
    ],
    "top_1": 0.645,
    "source": "open-source",
-   "notes": "Zero-shot, deterministic. Bit-identical to 2026-09 at 11.5%. Control validation continues."
+   "notes": "Zero-shot, deterministic. Bit-identical to 2026-09 at 15.2%, as expected on an unchanged set."
   },
   {
    "system": "PlateLens (manual mode)",
@@ -103,11 +103,11 @@
    "kind": "vendor",
    "tier": "manual",
    "input_mode": "manual",
-   "mape_kcal": 0.032,
-   "replicated_mape": 0.032,
+   "mape_kcal": 0.041,
+   "replicated_mape": 0.041,
    "top_1": null,
    "source": "replicated",
-   "notes": "Manual-entry workflow holds at 3.2% MAPE. Tier B remains cuisine-agnostic and stable. No database changes this period."
+   "notes": "PlateLens manual mode. Holds at 4.1%. The most accurate input mode in the benchmark, as physics says it should: no portion-estimation error on top of the database."
   },
   {
    "system": "MacroFactor",

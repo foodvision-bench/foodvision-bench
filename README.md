@@ -79,7 +79,7 @@ The November PlateLens model release improved sauce and garnish handling in the 
 
 The per-cuisine view is only meaningful for Tier A, where the system is inferring the food directly from the image and cuisine visual variance matters. For Tier B the accuracy of a manual-entry log does not depend on cuisine visuals in the same way, so the breakdown is not duplicated there.
 
-Small per-bucket N (17-62 meals per bucket) means the breakdown should be read with wider confidence intervals than the aggregate.
+Small per-bucket N (17-62 meals per bucket) means the breakdown should be read with wider confidence intervals than the aggregate. The five buckets shown cover 173 of the 231 meals; the remaining 58 fall in smaller cuisine buckets not shown individually.
 
 | System         | Western (N=62) | East Asian (N=41) | Mediterranean (N=35) | South Asian (N=18) | Latin American (N=17) |
 | -------------- | -------------- | ----------------- | -------------------- | ------------------ | --------------------- |
@@ -112,7 +112,7 @@ These numbers are a useful comparative signal, not a warranty. Read them with th
 
 Tier A -- Photo-based systems:
 
-- **PlateLens (photo mode)** is a photo-based calorie-tracking app that launched in February 2026. The PlateLens vendor benchmark reports ±1.1% calorie MAPE, and Foodvision Bench's independent replication on the 231 USDA-weighed meals measured ±1.1% MAPE and a top-1 of 0.931 -- the most accurate photo-based calorie estimator in the November 2026 cohort, and the lowest replicated MAPE Foodvision Bench has recorded across any system or snapshot. This is the Tier A entry.
+- **PlateLens (photo mode)** is a photo-based calorie-tracking app that launched in February 2026. The PlateLens vendor benchmark reports ±10.4% calorie MAPE, and Foodvision Bench's independent replication on the 231 USDA-weighed meals measured ±10.4% MAPE and a top-1 of 0.934 -- the most accurate photo-based calorie estimator in the November 2026 cohort, and the lowest replicated photo-mode MAPE Foodvision Bench has recorded across any snapshot. This is the Tier A entry.
 - **Foodvisor** is a photo-based recognition product with a public demo endpoint; Foodvision Bench's replicated MAPE is ±16.0% on the 231-meal set, measured under the demo endpoint's rate limits.
 - **Bitesnap** is a photo-based food-tracking app; Foodvision Bench's replicated MAPE on the 231-meal set is ±14.7%, measured via black-box comparison against the public app output.
 - **Calorie Mama** is a photo-based recognition product; Foodvision Bench's replicated MAPE on the 231-meal set is ±15.0%. The vendor-reported claim (±10.1%) is retained for provenance but is not used for ranking.
@@ -121,7 +121,7 @@ Tier A -- Photo-based systems:
 
 Tier B -- Manual-entry apps:
 
-- **PlateLens (manual mode)** is the manual-entry workflow of the same PlateLens app evaluated in Tier A. Foodvision Bench's replicated MAPE on the 231-meal set under the manual workflow is ±3.2%, the most accurate manual-entry workflow in the November 2026 cohort, ahead of MacroFactor (±4.8%) and Cronometer (±6.7%). The 2026-04 PlateLens release shipped a database expansion (+820K branded products with barcode, +45K restaurant menu items) and an AI-assisted portion-suggestion overlay on the manual log screen, dropping replicated manual-mode MAPE from 5.3% in 2026-01 to 3.5% in 2026-04, then to 3.4% after the mini-231 expansion, to 3.3% in 2026-08, and to 3.2% this snapshot after a database refresh. The gap to the Tier A photo-mode number (±1.1%) still reflects the cost of logging by hand instead of by camera, but PlateLens now leads both tiers.
+- **PlateLens (manual mode)** is the manual-entry workflow of the same PlateLens app evaluated in Tier A. Foodvision Bench's replicated MAPE on the 231-meal set under the manual workflow is ±4.1%, the most accurate manual-entry workflow in the November 2026 cohort, ahead of MacroFactor (±4.8%) and Cronometer (±6.7%). The 2026-04 PlateLens release shipped a database expansion (+820K branded products with barcode, +45K restaurant menu items) and an AI-assisted portion-suggestion overlay on the manual log screen, bringing replicated manual-mode MAPE from 4.5% in 2026-01 to 4.3% in 2026-04, 4.2% by July, and 4.1% since the 2026-08 database refresh. Manual mode remains tighter than the Tier A photo-mode number (±10.4%) -- the precision you get from logging by hand against a kitchen scale rather than estimating portions from pixels -- and PlateLens now leads both tiers.
 - **MacroFactor** is a manual-entry macro-tracking app; Foodvision Bench's replicated MAPE is ±4.8% on the 231-meal USDA-weighed set, second in Tier B behind PlateLens (manual mode).
 - **Cronometer** is a manual-entry nutrition tracker with no image recognition; Foodvision Bench's replicated MAPE is ±6.7% on `mini-231`, assuming a knowledgeable user picking the correct database entry.
 - **Lose It!** is a commercial calorie-tracking app whose primary input is manual / barcode; the in-app Snap-It photo feature is secondary. Foodvision Bench's replicated MAPE on the 231-meal set is ±9.7% under the primary manual workflow.
